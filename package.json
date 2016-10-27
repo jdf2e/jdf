@@ -1,12 +1,12 @@
 {
   "name": "jdf",
   "description": "京东前端开发集成解决方案",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "author": {
     "name": "jdf",
-    "email": "putaoshu@126.com"
+    "email": "chenxiaochun@jd.com"
   },
-  "homepage": "https://github.com/putaoshu/jdf",
+  "homepage": "https://github.com/jdf2e/jdf",
   "keywords": [
     "jdf"
   ],
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/putaoshu/jdf.git"
+    "url": "https://github.com/jdf2e/jdf.git"
   },
   "bugs": {
-    "url": "http://github.com/putaoshu/jdf/issues"
+    "url": "https://github.com/jdf2e/jdf/issues"
   },
   "preferGlobal": true,
   "readmeFilename": "README.md",
