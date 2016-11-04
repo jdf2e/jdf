@@ -1,5 +1,5 @@
 
-seajs.use(["test1.js", "/test2.js",], function(a, b){
+seajs.use(["test1.js", "/test2.js", "../test3.js", "./test4.js"], function(a, b){
 	
 });
 
