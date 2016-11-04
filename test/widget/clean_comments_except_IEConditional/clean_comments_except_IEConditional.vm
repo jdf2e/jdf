@@ -1,0 +1,29 @@
+<p>在config.json中开启清除HTML注释</p>
+<p>jdf v2.0.9中 jdf b 命令不会清除注释</p>
+<pre>
+{
+    "host": "ftpServerIp",
+    "user": "anonymous",
+    "password": "anonymous",
+    "projectPath": "",
+    "output": {
+        "comment": false 
+        // 尝试修改项目的config.json，将comment设置为false
+        // 并执行jdf o --html命令
+    }
+}
+</pre>
+<!--[if IE]>IE条件注释不会被清除<![endif]-->
+<!--[if IE 9]>IE条件注释不会被清除<![endif]-->
+<!--[if IE 9]>
+    换行IE条件注释不会被清除
+<![endif]-->
+<!--a-->
+<!-- 你好，注释 -->
+<!-- 
+    你好 多行注释
+    <p>多行注释文本</p>
+    {%widget name="p1" type="js" %}
+-->
+<!-- {%widget name="p1" type="js" %} -->
+<!-- [vm] /widget/p2/p2.vm -->
