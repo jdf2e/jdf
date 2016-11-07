@@ -34,7 +34,7 @@
     "atropa-jslint": "0.1.2",
     "babel-core": "^6.3.17",
     "clean-css": "2.1.8",
-    "colors": "1.0.2",
+    "colors": ">=1.0.2",
     "commander": "^2.9.0",
     "csslint": "0.10.0",
     "expect.js": "0.3.1",
