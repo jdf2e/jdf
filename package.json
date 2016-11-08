@@ -32,6 +32,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "atropa-jslint": "0.1.2",
+    "autoprefixer": "^6.5.2",
     "babel-core": "^6.3.17",
     "clean-css": "2.1.8",
     "colors": ">=1.0.2",
@@ -50,6 +51,7 @@
     "jsmart": "^2.14.0",
     "less": "^2.7.1",
     "node-watch": "0.3.4",
+    "postcss": "^5.2.5",
     "q": "1.0.1",
     "requirejs": "^2.2.0",
     "tar": "0.1.19",
