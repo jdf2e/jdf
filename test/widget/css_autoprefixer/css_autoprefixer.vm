@@ -1,0 +1,13 @@
+<div>
+<b>CSS自动前缀：<b><br>
+自动前缀默认开启，也可以在项目config.json下将cssAutoPrefixer置为false
+执行output o查看效果
+在css_autoprefixer目录下执行jdf build --css查看生成在同目录下的css文件
+    <pre>
+        {
+            "output": {
+                "cssAutoPrefixer": false // 关闭css自动加前缀
+            }
+        }
+    </pre>
+</div>
