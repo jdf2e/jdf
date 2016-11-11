@@ -15,7 +15,7 @@
     "jdf": "bin/jdf"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4.4.0"
   },
   "main": "index.js",
   "scripts": {
