@@ -5,7 +5,7 @@ var Log = require("./lib/log.js");
 var Compress = require('./lib/compress.js');
 var Server = require('./lib/server.js');
 var Widget = require("./lib/widget.js");
-var FtpUpload = require('./lib/ftpUpload');
+var upload = require('jdf-upload');
 var FileLint = require('./lib/fileLint');
 var FileFormat = require('./lib/fileFormat');
 
@@ -148,18 +148,15 @@ function initUpload(config) {
 	program
 		.command('upload [dir|file]')
 		.alias('u')
-		.description('upload css/js dir to remote sever')
+		.description('upload local resources to remote sever')
+		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'ftp')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.option('-p, --preview', 'upload html dir to preview server dir')
-		.option('-C, --nc', 'upload css/js dir to preview server dir use newcdn url')
+		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
 		.option('-H, --nh', 'upload html dir to preview server dir use newcdn url')
-		.option('-c, --custom', 'upload a dir/file to server')
-		.option('-f, --from [localPath]', 'when --custom used, --form must be supplied')
-		.option('-t, --to [serverPath]', 'when --custom used, --to refer to remotePath')
 		.option('-l, --list', 'upload file list from config.json to server')
 		.action(function(dir, options) {
-			Log.send('upload');
-			FtpUpload.init(dir, options, config);
+			upload(dir, options, jdf);
 		})
 		.on('--help', function() {
 		    outputHelp([
