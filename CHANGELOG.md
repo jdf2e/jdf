@@ -1,5 +1,10 @@
 ##changelog
 
+### 2.0.10 / 2016-11-14 18:00:00
+* [fix] ftp上传时timeout的错误
+* [add] 分离上传模块，支持ftp scp http三种方式，通过jdf u -H查看
+
+
 ### 2.0.9 / 2016-11-04 11:11:11
 * [add]widget的type可根据逗号","分隔符生成相应的类型，例：type="vm, js"
 * [fix]开启html注释删除时误删IE条件注释
