@@ -7,7 +7,7 @@
 
 ## 更新日志
 
-* [changelog](https://github.com/putaoshu/jdf/blob/master/CHANGELOG.md)
+* [changelog](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
 ## 关于JDF
 
