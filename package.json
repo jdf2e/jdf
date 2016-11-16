@@ -1,6 +1,6 @@
 {
   "name": "jdf-file",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "jdf-file",
   "main": "index.js",
   "scripts": {
