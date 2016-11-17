@@ -149,7 +149,7 @@ function initUpload(config) {
 		.command('upload [dir|file]')
 		.alias('u')
 		.description('upload local resources to remote sever')
-		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'ftp')
+		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'http')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.option('-p, --preview', 'upload html dir to preview server dir')
 		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
