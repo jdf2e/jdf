@@ -1,5 +1,9 @@
 ##changelog
 
+### 2.0.11 / 2016-11-17 14:32
+
+* [add] widget模块的install,list,publish重构
+
 ### 2.0.10 / 2016-11-14 18:00:00
 * [fix] ftp上传时timeout的错误
 * [add] 分离上传模块，支持ftp scp http三种方式，通过jdf u -h查看

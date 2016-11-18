@@ -126,11 +126,7 @@ function initOutput() {
 		.command('output [dir|file]')
 		.alias('o')
 		.description('output project')
-		.option('-H, --html', 'output project (include html)')
-		.option('-r, --rjs', 'output project based requirejs')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
-		// .option('-b, --backup', 'backup outputdir to tags dir') // 暂时先去掉，有点bug，没怎么看懂这块代码
-		.option('-p, --path <projectPath>', 'replace projectPath to specified path option')
 		.action(function(dir, options) {
 			Log.send('output');
 			jdf.output(dir, options);
@@ -149,7 +145,7 @@ function initUpload(config) {
 		.command('upload [dir|file]')
 		.alias('u')
 		.description('upload local resources to remote sever')
-		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'ftp')
+		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'http')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.option('-p, --preview', 'upload html dir to preview server dir')
 		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
