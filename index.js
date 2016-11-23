@@ -1,3 +1,4 @@
+"use strict";
 var path = require('path');
 var program = require('commander');
 var jdf = require('./lib/jdf.js');
