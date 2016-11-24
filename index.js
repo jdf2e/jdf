@@ -1,4 +1,5 @@
-"use strict";
+'use strict';
+
 var path = require('path');
 var program = require('commander');
 var jdf = require('./lib/jdf.js');
@@ -6,9 +7,10 @@ var Log = require("./lib/log.js");
 var Compress = require('./lib/compress.js');
 var Server = require('./lib/server.js');
 var Widget = require("./lib/widget.js");
-var upload = require('jdf-upload');
+var upload = require('../jdf-upload');
 var FileLint = require('./lib/fileLint');
 var FileFormat = require('./lib/fileFormat');
+var f = require('jdf-file').file;
 
 module.exports = {
 	init: function(argv) {
@@ -18,10 +20,35 @@ module.exports = {
 	}
 };
 
+/**
+ * 可以把一级命令的options转化成二级命令的options
+ * @param fn
+ * @returns {Function}
+ */
+function mergeOptions(fn) {
+    return function() {
+        const args = Array.prototype.slice.call(arguments);
+        // 经debug发现，commander.js都会把options作为最后一个参数传递过来
+        const lastArgv = args[args.length - 1];
+        // if (Object.prototype.toString.call(lastArgv) == '[object Object]') {
+        // }
+        if (program.verbose) {
+            lastArgv.logLevel = 'verbose';
+        }
+        if (program.logLevel) {
+            lastArgv.logLevel = program.logLevel;
+        }
+
+        fn.apply(null, args);
+    }
+}
+
 function initCommandWithArgs(argv, config) {
 	program
 		.version(jdf.version())
-		.usage('[commands] [options]');
+		.usage('[commands] [options]')
+        .option('-L, --logLevel [level]', `show more detail info. ['warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`)
+        .option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
 
 	// 所有命令入口初始化
 	initInstall();
@@ -152,9 +179,9 @@ function initUpload(config) {
 		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
 		.option('-H, --nh', 'upload html dir to preview server dir use newcdn url')
 		.option('-l, --list', 'upload file list from config.json to server')
-		.action(function(dir, options) {
+		.action(mergeOptions(function(dir, options) {
 			upload(dir, options, jdf);
-		})
+		}))
 		.on('--help', function() {
 		    outputHelp([
 		    	'$ jdf upload',
@@ -274,7 +301,6 @@ function initLint() {
 		.description('file lint')
 		.action(function(dir) {
 			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
-			Log.send('file lint');
 			FileLint.init(filename);
 		})
 		.on('--help', function() {
@@ -292,7 +318,6 @@ function initFormat() {
 		.description('file formater')
 		.action(function(dir) {
 			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
-			Log.send('file format');
 			FileFormat.init(filename);
 		})
 		.on('--help', function() {
@@ -317,5 +342,4 @@ function outputHelp(helpItems) {
     helpItems.forEach(function(item) {
         console.log('    '+ item);
     })
-    console.log();
 }
