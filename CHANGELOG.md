@@ -1,6 +1,8 @@
 ##changelog
 
 ### 2.0.10 / 2016-11-14 18:00:00
+* [add] 增加.editorconfig的支持
+* [add] widget模块集成jdf-log
 * [add] 删除jdf release相关命令以及入口
 * [add] 删除原来的log.js模块以及在入口文件的引用
 * [add] 集成jdf-log模块

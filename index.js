@@ -1,21 +1,21 @@
 'use strict';
 
-var path = require('path');
-var program = require('commander');
-var jdf = require('./lib/jdf.js');
-var Compress = require('./lib/compress.js');
-var Server = require('./lib/server.js');
-var Widget = require("./lib/widget.js");
-var upload = require('jdf-upload');
-var FileLint = require('./lib/fileLint');
-var FileFormat = require('./lib/fileFormat');
-var f = require('jdf-file').file;
+const path = require('path');
+const program = require('commander');
+const jdf = require('./lib/jdf.js');
+const compress = require('./lib/compress.js');
+const server = require('./lib/server.js');
+const widget = require("./lib/widget.js");
+const upload = require('jdf-upload');
+const lint = require('./lib/fileLint');
+const format = require('./lib/fileFormat');
+const f = require('jdf-file').file;
 const logger = require('jdf-log');
 
 module.exports = {
 	init: function(argv) {
 		jdf.init(function(config) {
-			initCommandWithArgs(argv, config);
+		    initCommandWithArgs(argv, config);
 		});
 	}
 };
@@ -33,8 +33,7 @@ function mergeOptions(fn) {
 
         if (program.verbose) {
             lastArgv.logLevel = 'verbose';
-        }
-        if (program.logLevel) {
+        } else if (program.logLevel) {
             lastArgv.logLevel = program.logLevel;
         }
         logger.level(lastArgv.logLevel);
@@ -46,7 +45,7 @@ function initCommandWithArgs(argv, config) {
 	program
 		.version(jdf.version())
 		.usage('[commands] [options]')
-        .option('-L, --logLevel [level]', `show more detail info. ['warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`)
+        .option('-L, --logLevel [level]', `show more detail info. ['error', 'warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`, 'info')
         .option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
 
 	// 所有命令入口初始化
@@ -77,7 +76,7 @@ function initInstall() {
 		.alias('i')
 		.description('create new project with template or not')
 		.option('-t, --template [name]', 'specify template name (widget|empty) [empty]', 'empty')
-		.action(function(projectName, options) {
+		.action(mergeOptions((projectName, options) => {
 			var type = options.template;
 			projectName = projectName || (type == 'widget' ? 'jdf_widget' : 'jdf_init');
 			switch(type) {
@@ -90,7 +89,7 @@ function initInstall() {
 				default:
 					console.log('You can "jdf install projectPath or "jdf install -t widget projectPath"');
 			}
-		})
+		}))
 		.on('--help', function() {
 		    outputHelp([
 		        '$ jdf install myProj',
@@ -108,9 +107,9 @@ function initBuild() {
 		.option('-C, --combo', 'combo debug for online/RD debug')
 		.option('-c, --css', 'compile less/scss file in current dir')
 		.option('-p, --plain', 'output project with plain')
-		.action(function(options) {
+		.action(mergeOptions((options) => {
             jdf.build(options);
-		})
+		}))
 		.on('--help', function() {
 		    outputHelp([
                 '$ jdf build',
@@ -128,9 +127,9 @@ function initOutput() {
 		.alias('o')
 		.description('output project')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
-		.action(function(dir, options) {
+		.action(mergeOptions((dir, options) => {
 			jdf.output(dir, options);
-		})
+		}))
 		.on('--help', function() {
 		    outputHelp([
                 '$ jdf output srcPath',
@@ -151,7 +150,7 @@ function initUpload(config) {
 		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
 		.option('-H, --nh', 'upload html dir to preview server dir use newcdn url')
 		.option('-l, --list', 'upload file list from config.json to server')
-		.action(mergeOptions(function(dir, options) {
+		.action(mergeOptions((dir, options) => {
 			upload(dir, options, jdf);
 		}))
 		.on('--help', function() {
@@ -177,32 +176,32 @@ function initWidget() {
 		.option('-i, --install <widgetName>', 'install a widget to local')
 		.option('-P, --publish <widgetName>', 'publish a widget to server')
 		.option('-c, --create <widgetName>', 'create a widget to local')
-		.action(function(options) {
+		.action(mergeOptions((options) => {
 			options.force = options.force || false;
 			if(options.all) {
-				Widget.all();
+				widget.all();
 			}
 
 			if (options.list) {
-				Widget.list();
+				widget.list();
 			}
 
 			if(options.preview) {
-				Widget.preview(options.preview);
+				widget.preview(options.preview);
 			}
 
 			if(options.install) {
-				Widget.install(options.install, options.force);
+				widget.install(options.install, options.force);
 			}
 
 			if(options.publish) {
-				Widget.publish(options.publish, options.force);
+				widget.publish(options.publish, options.force);
 			}
 
 			if(options.create) {
-				Widget.create(options.create);
+				widget.create(options.create);
 			}
-		})
+		}))
 		.on('--help', function() {
 		    outputHelp([
                 '$ jdf widget --all',
@@ -220,9 +219,9 @@ function initCompress() {
 		.command('compress <srcPath> [destPath]')
 		.alias('c')
 		.description('compress js/css (jdf compress input output)')
-		.action(function(srcPath, destPath) {
-			Compress.dir(srcPath, destPath);
-		})
+		.action(mergeOptions((srcPath, destPath) => {
+			compress.dir(srcPath, destPath);
+		}))
 		.on('--help', function() {
 		    outputHelp([
                 '$ jdf compress ./js ./js-dest',
@@ -249,7 +248,7 @@ function initServer() {
 		.alias('s')
 		.description('debug for online/RD debug')
 		.action(function() {
-			Server.init('./', jdf.config.localServerPort, jdf.config.cdn, jdf.getProjectPath(), true);
+			server.init('./', jdf.config.localServerPort, jdf.config.cdn, jdf.getProjectPath(), true);
 			console.log('jdf server running at http://localhost:' + jdf.config.localServerPort + '/');
 		})
 		.on('--help', function() {
@@ -264,7 +263,7 @@ function initLint() {
 		.description('file lint')
 		.action(function(dir) {
 			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
-			FileLint.init(filename);
+			lint.init(filename);
 		})
 		.on('--help', function() {
 		    outputHelp([
@@ -281,7 +280,7 @@ function initFormat() {
 		.description('file formater')
 		.action(function(dir) {
 			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
-			FileFormat.init(filename);
+			format.init(filename);
 		})
 		.on('--help', function() {
 		    outputHelp([
