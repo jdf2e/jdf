@@ -3,14 +3,14 @@
 var path = require('path');
 var program = require('commander');
 var jdf = require('./lib/jdf.js');
-var Log = require("./lib/log.js");
 var Compress = require('./lib/compress.js');
 var Server = require('./lib/server.js');
 var Widget = require("./lib/widget.js");
-var upload = require('../jdf-upload');
+var upload = require('jdf-upload');
 var FileLint = require('./lib/fileLint');
 var FileFormat = require('./lib/fileFormat');
 var f = require('jdf-file').file;
+const logger = require('jdf-log');
 
 module.exports = {
 	init: function(argv) {
@@ -21,7 +21,7 @@ module.exports = {
 };
 
 /**
- * 可以把一级命令的options转化成二级命令的options
+ * 把一级命令的options转化成二级命令的options
  * @param fn
  * @returns {Function}
  */
@@ -30,15 +30,14 @@ function mergeOptions(fn) {
         const args = Array.prototype.slice.call(arguments);
         // 经debug发现，commander.js都会把options作为最后一个参数传递过来
         const lastArgv = args[args.length - 1];
-        // if (Object.prototype.toString.call(lastArgv) == '[object Object]') {
-        // }
+
         if (program.verbose) {
             lastArgv.logLevel = 'verbose';
         }
         if (program.logLevel) {
             lastArgv.logLevel = program.logLevel;
         }
-
+        logger.level(lastArgv.logLevel);
         fn.apply(null, args);
     }
 }
@@ -53,7 +52,6 @@ function initCommandWithArgs(argv, config) {
 	// 所有命令入口初始化
 	initInstall();
 	initBuild();
-	initRelease();
 	initOutput();
 	initUpload(config);
 	initWidget();
@@ -84,11 +82,9 @@ function initInstall() {
 			projectName = projectName || (type == 'widget' ? 'jdf_widget' : 'jdf_init');
 			switch(type) {
 				case 'widget':
-					Log.send('install-demo');
 					jdf.install('widget', projectName);
 					break;
 				case 'empty':
-					Log.send('install-init');
 					jdf.install('init', projectName);
 					break;
 				default:
@@ -113,7 +109,6 @@ function initBuild() {
 		.option('-c, --css', 'compile less/scss file in current dir')
 		.option('-p, --plain', 'output project with plain')
 		.action(function(options) {
-			Log.send('build');
             jdf.build(options);
 		})
 		.on('--help', function() {
@@ -127,28 +122,6 @@ function initBuild() {
 		});
 }
 
-function initRelease() {
-	program
-		.command('release')
-		.alias('r')
-		.description('release project')
-		.option('-o, --open', 'auto open html/index.html')
-		.option('-C, --combo', 'combo debug for online/RD debug')
-		.option('-p, --plain', 'release project with plain')
-		.action(function(options) {
-			Log.send('release');
-			jdf.release(options);
-		})
-        .on('--help', function() {
-            outputHelp([
-            	'$ jdf release',
-				'$ jdf release --combo',
-				'$ jdf release --open',
-				'$ jdf release --plain'
-			]);
-        });
-}
-
 function initOutput() {
 	program
 		.command('output [dir|file]')
@@ -156,7 +129,6 @@ function initOutput() {
 		.description('output project')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.action(function(dir, options) {
-			Log.send('output');
 			jdf.output(dir, options);
 		})
 		.on('--help', function() {
@@ -208,32 +180,26 @@ function initWidget() {
 		.action(function(options) {
 			options.force = options.force || false;
 			if(options.all) {
-				Log.send('widget-all');
 				Widget.all();
 			}
 
 			if (options.list) {
-				Log.send('widget-list');
 				Widget.list();
 			}
 
 			if(options.preview) {
-				Log.send('widget-preview');
 				Widget.preview(options.preview);
 			}
 
 			if(options.install) {
-				Log.send('widget-install');
 				Widget.install(options.install, options.force);
 			}
 
 			if(options.publish) {
-				Log.send('widget-publish');
 				Widget.publish(options.publish, options.force);
 			}
 
 			if(options.create) {
-				Log.send('widget-create');
 				Widget.create(options.create);
 			}
 		})
@@ -255,7 +221,6 @@ function initCompress() {
 		.alias('c')
 		.description('compress js/css (jdf compress input output)')
 		.action(function(srcPath, destPath) {
-			Log.send('compress');
 			Compress.dir(srcPath, destPath);
 		})
 		.on('--help', function() {
@@ -271,7 +236,6 @@ function initClean() {
 		.command('clean')
 		.description('clean cache folder')
 		.action(function() {
-			Log.send('clean');
 			jdf.clean();
 		})
 		.on('--help', function() {
@@ -285,7 +249,6 @@ function initServer() {
 		.alias('s')
 		.description('debug for online/RD debug')
 		.action(function() {
-			Log.send('server');
 			Server.init('./', jdf.config.localServerPort, jdf.config.cdn, jdf.getProjectPath(), true);
 			console.log('jdf server running at http://localhost:' + jdf.config.localServerPort + '/');
 		})

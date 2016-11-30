@@ -1,6 +1,8 @@
 ##changelog
 
 ### 2.0.10 / 2016-11-14 18:00:00
+* [add] 删除jdf release相关命令以及入口
+* [add] 删除原来的log.js模块以及在入口文件的引用
 * [add] 集成jdf-log模块
 * [add] 将所有的file.js和base.js替换成jdf-file组件
 * [fix] ftp上传时timeout的错误
