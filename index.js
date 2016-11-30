@@ -4,7 +4,7 @@ const path = require('path');
 const program = require('commander');
 const jdf = require('./lib/jdf.js');
 const compress = require('./lib/compress.js');
-const server = require('./lib/server.js');
+const bs = require('./lib/browserSyncServer');
 const widget = require("./lib/widget.js");
 const upload = require('jdf-upload');
 const lint = require('./lib/fileLint');
@@ -248,8 +248,13 @@ function initServer() {
 		.alias('s')
 		.description('debug for online/RD debug')
 		.action(function() {
-			server.init('./', jdf.config.localServerPort, jdf.config.cdn, jdf.getProjectPath(), true);
-			console.log('jdf server running at http://localhost:' + jdf.config.localServerPort + '/');
+            var serverConf = {};
+            serverConf.autoOpenurl = false;
+            serverConf.comboDebug = true;
+            serverConf.jdfconfig = jdf.config;
+            serverConf.serverDir = jdf.bgCurrentDir;
+            serverConf.currentDir = jdf.currentDir;
+            bs.startup(serverConf, function (port) {});
 		})
 		.on('--help', function() {
 		    outputHelp(['$ jdf server']);
