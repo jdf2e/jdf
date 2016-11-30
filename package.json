@@ -49,7 +49,7 @@
     "jdf-file": "^1.0.4",
     "jdf-images": "^1.0.4",
     "jdf-img-minify": "0.0.3",
-    "jdf-log": "0.0.2",
+    "jdf-log": "^0.0.3",
     "jdf-sass": "^1.0.17",
     "jdf-upload": "^0.1.4",
     "jdf-ws": "^1.0.3",
