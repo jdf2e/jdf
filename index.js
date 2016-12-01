@@ -248,13 +248,7 @@ function initServer() {
 		.alias('s')
 		.description('debug for online/RD debug')
 		.action(function() {
-            var serverConf = {};
-            serverConf.autoOpenurl = false;
-            serverConf.comboDebug = true;
-            serverConf.jdfconfig = jdf.config;
-            serverConf.serverDir = jdf.bgCurrentDir;
-            serverConf.currentDir = jdf.currentDir;
-            bs.startup(serverConf, function (port) {});
+            bs.startup();
 		})
 		.on('--help', function() {
 		    outputHelp(['$ jdf server']);
