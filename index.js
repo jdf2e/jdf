@@ -127,6 +127,7 @@ function initOutput() {
 		.alias('o')
 		.description('output project')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
+        .option('-p, --plain', 'output project by plain')
 		.action(mergeOptions((dir, options) => {
 			jdf.output(dir, options);
 		}))
@@ -134,7 +135,7 @@ function initOutput() {
 		    outputHelp([
                 '$ jdf output srcPath',
                 '$ jdf output --debug --backup srcPath',
-                '$ jdf output --path anotherName srcPath'
+                '$ jdf output --plain'
             ]);
 		});
 }
