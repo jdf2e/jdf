@@ -9,7 +9,7 @@ const widget = require("./lib/widget.js");
 const upload = require('jdf-upload');
 const lint = require('./lib/fileLint');
 const format = require('./lib/fileFormat');
-const f = require('jdf-file').file;
+const f = require('jdf-utils').file;
 const logger = require('jdf-log');
 
 module.exports = {
