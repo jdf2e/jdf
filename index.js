@@ -123,7 +123,7 @@ function initBuild() {
 
 function initOutput() {
 	program
-		.command('output [dir|file]')
+		.command('output [dir...]')
 		.alias('o')
 		.description('output project')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
