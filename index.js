@@ -13,10 +13,11 @@ const f = require('jdf-utils').file;
 const logger = require('jdf-log');
 
 module.exports = {
-	init: function(argv) {
-		jdf.init(function(config) {
-		    initCommandWithArgs(argv, config);
-		});
+	init: function (argv) {
+		let config = jdf.init();
+		if (config) {
+			initCommandWithArgs(argv, config);
+		}
 	}
 };
 
@@ -26,27 +27,27 @@ module.exports = {
  * @returns {Function}
  */
 function mergeOptions(fn) {
-    return function() {
-        const args = Array.prototype.slice.call(arguments);
-        // 经debug发现，commander.js都会把options作为最后一个参数传递过来
-        const lastArgv = args[args.length - 1];
+	return function () {
+		const args = Array.prototype.slice.call(arguments);
+		// 经debug发现，commander.js都会把options作为最后一个参数传递过来
+		const lastArgv = args[args.length - 1];
 
-        if (program.verbose) {
-            lastArgv.logLevel = 'verbose';
-        } else if (program.logLevel) {
-            lastArgv.logLevel = program.logLevel;
-        }
-        logger.level(lastArgv.logLevel);
-        fn.apply(null, args);
-    }
+		if (program.verbose) {
+			lastArgv.logLevel = 'verbose';
+		} else if (program.logLevel) {
+			lastArgv.logLevel = program.logLevel;
+		}
+		logger.level(lastArgv.logLevel);
+		fn.apply(null, args);
+	}
 }
 
 function initCommandWithArgs(argv, config) {
 	program
 		.version(jdf.version())
 		.usage('[commands] [options]')
-        .option('-L, --logLevel [level]', `show more detail info. ['error', 'warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`, 'info')
-        .option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
+		.option('-L, --logLevel [level]', `show more detail info. ['error', 'warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`, 'info')
+		.option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
 
 	// 所有命令入口初始化
 	initInstall();
@@ -79,7 +80,7 @@ function initInstall() {
 		.action(mergeOptions((projectName, options) => {
 			var type = options.template;
 			projectName = projectName || (type == 'widget' ? 'jdf_widget' : 'jdf_init');
-			switch(type) {
+			switch (type) {
 				case 'widget':
 					jdf.install('widget', projectName);
 					break;
@@ -90,11 +91,11 @@ function initInstall() {
 					console.log('You can "jdf install projectPath or "jdf install -t widget projectPath"');
 			}
 		}))
-		.on('--help', function() {
-		    outputHelp([
-		        '$ jdf install myProj',
-                '$ jdf install --template widget myProj'
-            ]);
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf install myProj',
+				'$ jdf install --template widget myProj'
+			]);
 		});
 }
 
@@ -108,16 +109,16 @@ function initBuild() {
 		.option('-c, --css', 'compile less/scss file in current dir')
 		.option('-p, --plain', 'output project with plain')
 		.action(mergeOptions((options) => {
-            jdf.build(options);
+			jdf.build(options);
 		}))
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf build',
-                '$ jdf build --combo',
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf build',
+				'$ jdf build --combo',
 				'$ jdf build --open',
-                '$ jdf build --css',
-                '$ jdf build --plain'
-            ])
+				'$ jdf build --css',
+				'$ jdf build --plain'
+			])
 		});
 }
 
@@ -127,16 +128,16 @@ function initOutput() {
 		.alias('o')
 		.description('output project')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
-        .option('-p, --plain', 'output project by plain')
+		.option('-p, --plain', 'output project by plain')
 		.action(mergeOptions((dir, options) => {
 			jdf.output(dir, options);
 		}))
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf output srcPath',
-                '$ jdf output --debug --backup srcPath',
-                '$ jdf output --plain'
-            ]);
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf output srcPath',
+				'$ jdf output --debug --backup srcPath',
+				'$ jdf output --plain'
+			]);
 		});
 }
 
@@ -154,14 +155,14 @@ function initUpload(config) {
 		.action(mergeOptions((dir, options) => {
 			upload(dir, options, jdf);
 		}))
-		.on('--help', function() {
-		    outputHelp([
-		    	'$ jdf upload',
-                '$ jdf upload srcPath',
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf upload',
+				'$ jdf upload srcPath',
 				'$ jdf upload --nc',
 				'$ jdf upload --nh',
-                '$ jdf upload --debug --preview srcPath'
-            ]);
+				'$ jdf upload --debug --preview srcPath'
+			]);
 		});
 }
 
@@ -179,7 +180,7 @@ function initWidget() {
 		.option('-c, --create <widgetName>', 'create a widget to local')
 		.action(mergeOptions((options) => {
 			options.force = options.force || false;
-			if(options.all) {
+			if (options.all) {
 				widget.all();
 			}
 
@@ -187,31 +188,31 @@ function initWidget() {
 				widget.list();
 			}
 
-			if(options.preview) {
+			if (options.preview) {
 				widget.preview(options.preview);
 			}
 
-			if(options.install) {
+			if (options.install) {
 				widget.install(options.install, options.force);
 			}
 
-			if(options.publish) {
+			if (options.publish) {
 				widget.publish(options.publish, options.force);
 			}
 
-			if(options.create) {
+			if (options.create) {
 				widget.create(options.create);
 			}
 		}))
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf widget --all',
-                '$ jdf widget --list',
-                '$ jdf widget --preview myWidget',
-                '$ jdf widget --install ui-header --force',
-                '$ jdf widget --publish myWidget',
-                '$ jdf widget --create myWidget'
-            ])
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf widget --all',
+				'$ jdf widget --list',
+				'$ jdf widget --preview myWidget',
+				'$ jdf widget --install ui-header --force',
+				'$ jdf widget --publish myWidget',
+				'$ jdf widget --create myWidget'
+			])
 		});
 }
 
@@ -223,11 +224,11 @@ function initCompress() {
 		.action(mergeOptions((srcPath, destPath) => {
 			compress.dir(srcPath, destPath);
 		}))
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf compress ./js ./js-dest',
-                '$ jdf compress ./css'
-            ])
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf compress ./js ./js-dest',
+				'$ jdf compress ./css'
+			])
 		});
 }
 
@@ -235,11 +236,11 @@ function initClean() {
 	program
 		.command('clean')
 		.description('clean cache folder')
-		.action(function() {
+		.action(function () {
 			jdf.clean();
 		})
-		.on('--help', function() {
-		    outputHelp(['$ jdf clean']);
+		.on('--help', function () {
+			outputHelp(['$ jdf clean']);
 		});
 }
 
@@ -248,11 +249,11 @@ function initServer() {
 		.command('server')
 		.alias('s')
 		.description('debug for online/RD debug')
-		.action(function() {
-            bs.startup();
+		.action(function () {
+			bs.startup();
 		})
-		.on('--help', function() {
-		    outputHelp(['$ jdf server']);
+		.on('--help', function () {
+			outputHelp(['$ jdf server']);
 		});
 }
 
@@ -261,15 +262,15 @@ function initLint() {
 		.command('lint [dir|file]')
 		.alias('l')
 		.description('file lint')
-		.action(function(dir) {
-			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
+		.action(function (dir) {
+			var filename = (typeof (dir) == 'undefined') ? f.currentDir() : dir;
 			lint.init(filename);
 		})
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf lint file.js',
-                '$ jdf lint ./src'
-            ]);
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf lint file.js',
+				'$ jdf lint ./src'
+			]);
 		});
 }
 
@@ -278,30 +279,30 @@ function initFormat() {
 		.command('format [dir|file]')
 		.alias('f')
 		.description('file formater')
-		.action(function(dir) {
-			var filename = (typeof(dir) == 'undefined') ? f.currentDir() : dir;
+		.action(function (dir) {
+			var filename = (typeof (dir) == 'undefined') ? f.currentDir() : dir;
 			format.init(filename);
 		})
-		.on('--help', function() {
-		    outputHelp([
-                '$ jdf format file.js',
-                '$ jdf format ./src'
-            ]);
+		.on('--help', function () {
+			outputHelp([
+				'$ jdf format file.js',
+				'$ jdf format ./src'
+			]);
 		});
 }
 
 function initUncaught() {
 	program
 		.command('*')
-		.action(function(env) {
+		.action(function (env) {
 			console.log('jdf error, invalid option: ' + env + '\nType "jdf -h" for usage.');
 		});
 }
 
 function outputHelp(helpItems) {
-    console.log('  Examples:');
-    console.log('');
-    helpItems.forEach(function(item) {
-        console.log('    '+ item);
-    })
+	console.log('  Examples:');
+	console.log('');
+	helpItems.forEach(function (item) {
+		console.log('    ' + item);
+	})
 }
