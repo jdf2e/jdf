@@ -2,22 +2,19 @@
 
 const path = require('path');
 const program = require('commander');
-const jdf = require('./lib/jdf.js');
-const compress = require('./lib/urlReplace.js');
+const jdf = require('./lib/jdf');
+const compress = require('./lib/urlReplace');
 const bs = require('./lib/server/browserSyncServer');
-const widget = require("./lib/widget.js");
+const widget = require('./lib/widget');
 const upload = require('jdf-upload');
 const lint = require('./lib/fileLint');
 const format = require('./lib/fileFormat');
-const f = require('jdf-utils').file;
 const logger = require('jdf-log');
 
 module.exports = {
 	init: function (argv) {
-		let config = jdf.init();
-		if (config) {
-			initCommandWithArgs(argv, config);
-		}
+		jdf.init();
+        initCommandWithArgs(argv);
 	}
 };
 
@@ -42,7 +39,7 @@ function mergeOptions(fn) {
 	}
 }
 
-function initCommandWithArgs(argv, config) {
+function initCommandWithArgs(argv) {
 	program
 		.version(jdf.version())
 		.usage('[commands] [options]')
@@ -53,7 +50,7 @@ function initCommandWithArgs(argv, config) {
 	initInstall();
 	initBuild();
 	initOutput();
-	initUpload(config);
+	initUpload();
 	initWidget();
 	initCompress();
 	initClean();
@@ -141,17 +138,15 @@ function initOutput() {
 		});
 }
 
-function initUpload(config) {
+function initUpload() {
 	program
-		.command('upload [dir|file]')
+		.command('upload [dir...]')
 		.alias('u')
 		.description('upload local resources to remote sever')
 		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'http')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
-		.option('-p, --preview', 'upload html dir to preview server dir')
-		.option('-c, --nc', 'upload css/js dir to preview server dir use newcdn url')
-		.option('-H, --nh', 'upload html dir to preview server dir use newcdn url')
-		.option('-l, --list', 'upload file list from config.json to server')
+        .option('-p, --plain', 'output project by plain')
+		.option('-P, --preview', 'upload html dir to preview server dir')
 		.action(mergeOptions((dir, options) => {
 			upload(dir, options, jdf);
 		}))
@@ -263,7 +258,7 @@ function initLint() {
 		.alias('l')
 		.description('file lint')
 		.action(function (dir) {
-			var filename = (typeof (dir) == 'undefined') ? f.currentDir() : dir;
+			const filename = (typeof dir === 'undefined') ? process.cwd() : dir;
 			lint.init(filename);
 		})
 		.on('--help', function () {
@@ -280,7 +275,7 @@ function initFormat() {
 		.alias('f')
 		.description('file formater')
 		.action(function (dir) {
-			var filename = (typeof (dir) == 'undefined') ? f.currentDir() : dir;
+			const filename = (typeof dir === 'undefined') ? process.cwd() : dir;
 			format.init(filename);
 		})
 		.on('--help', function () {
