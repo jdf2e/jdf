@@ -14,7 +14,7 @@ const logger = require('jdf-log');
 module.exports = {
 	init: function (argv) {
 		jdf.init();
-        initCommandWithArgs(argv);
+		initCommandWithArgs(argv);
 	}
 };
 
@@ -28,7 +28,6 @@ function mergeOptions(fn) {
 		const args = Array.prototype.slice.call(arguments);
 		// 经debug发现，commander.js都会把options作为最后一个参数传递过来
 		const lastArgv = args[args.length - 1];
-
 		if (program.verbose) {
 			lastArgv.logLevel = 'verbose';
 		} else if (program.logLevel) {
@@ -145,7 +144,7 @@ function initUpload() {
 		.description('upload local resources to remote sever')
 		.option('-t, --type [name]', 'which transfer type to use (ftp|scp|http) [ftp]', 'http')
 		.option('-d, --debug', 'uncompressed js,css,images for test')
-        .option('-p, --plain', 'output project by plain')
+		.option('-p, --plain', 'output project by plain')
 		.option('-P, --preview', 'upload html dir to preview server dir')
 		.action(mergeOptions((dir, options) => {
 			upload(dir, options, jdf);
