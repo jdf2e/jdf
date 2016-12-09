@@ -26,7 +26,7 @@ module.exports = {
 function mergeOptions(fn) {
 	return function () {
 		const args = Array.prototype.slice.call(arguments);
-		// 经debug发现，commander.js都会把options作为最后一个参数传递过来
+		// commander.js会把options作为最后一个参数传递过来
 		const lastArgv = args[args.length - 1];
 		if (program.verbose) {
 			lastArgv.logLevel = 'verbose';
