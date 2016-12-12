@@ -142,13 +142,12 @@ function initWidget() {
 		.command('widget')
 		.alias('w')
 		.description('create/install/preview/publish widgets')
+        .option('-c, --create <widgetName>', 'create a widget to local')
 		.option('-a, --all', 'preview all local widgets')
 		.option('-l, --list', 'get widget list from server')
-		.option('-f, --force')
-		.option('-p, --preview <widgetName>', 'preview a widget')
 		.option('-i, --install <widgetName>', 'install a widget to local')
-		.option('-P, --publish <widgetName>', 'publish a widget to server')
-		.option('-c, --create <widgetName>', 'create a widget to local')
+		.option('-p, --publish <widgetName>', 'publish a widget to server')
+        .option('-f, --force', 'force corver when publish or install widget')
 		.action(mergeOptions((options) => {
             const widget = require('./lib/widget');
 			options.force = options.force || false;
@@ -158,10 +157,6 @@ function initWidget() {
 
 			if (options.list) {
 				widget.list();
-			}
-
-			if (options.preview) {
-				widget.preview(options.preview);
 			}
 
 			if (options.install) {
@@ -178,12 +173,12 @@ function initWidget() {
 		}))
 		.on('--help', function () {
 			outputHelp([
+                '$ jdf widget --create widgetName',
 				'$ jdf widget --all',
 				'$ jdf widget --list',
-				'$ jdf widget --preview myWidget',
 				'$ jdf widget --install ui-header --force',
 				'$ jdf widget --publish myWidget',
-				'$ jdf widget --create myWidget'
+                '$ jdf widget --force'
 			])
 		});
 }
