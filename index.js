@@ -7,8 +7,9 @@ const logger = require('jdf-log');
 
 module.exports = {
 	init: function (argv) {
-		jdf.init();
-		initCommandWithArgs(argv);
+		if(jdf.init()){
+		  initCommandWithArgs(argv);
+        }
 	}
 };
 
