@@ -3,12 +3,6 @@
 const path = require('path');
 const program = require('commander');
 const jdf = require('./lib/jdf');
-const compress = require('./lib/urlReplace');
-const bs = require('./lib/server/browserSyncServer');
-const widget = require('./lib/widget');
-const upload = require('jdf-upload');
-const lint = require('./lib/fileLint');
-const format = require('./lib/fileFormat');
 const logger = require('jdf-log');
 
 module.exports = {
@@ -147,6 +141,7 @@ function initUpload() {
 		.option('-p, --plain', 'output project by plain')
 		.option('-P, --preview', 'upload html dir to preview server dir')
 		.action(mergeOptions((dir, options) => {
+            const upload = require('jdf-upload');
 			upload(dir, options, jdf);
 		}))
 		.on('--help', function () {
@@ -173,6 +168,7 @@ function initWidget() {
 		.option('-P, --publish <widgetName>', 'publish a widget to server')
 		.option('-c, --create <widgetName>', 'create a widget to local')
 		.action(mergeOptions((options) => {
+            const widget = require('./lib/widget');
 			options.force = options.force || false;
 			if (options.all) {
 				widget.all();
@@ -216,7 +212,8 @@ function initCompress() {
 		.alias('c')
 		.description('compress js/css (jdf compress input output)')
 		.action(mergeOptions((srcPath, destPath) => {
-			compress.dir(srcPath, destPath);
+            const compress = require('./lib/urlReplace');
+            compress.dir(srcPath, destPath);
 		}))
 		.on('--help', function () {
 			outputHelp([
@@ -244,6 +241,7 @@ function initServer() {
 		.alias('s')
 		.description('debug for online/RD debug')
 		.action(function () {
+            const bs = require('./lib/server/browserSyncServer');
 			bs.startup();
 		})
 		.on('--help', function () {
@@ -257,6 +255,7 @@ function initLint() {
 		.alias('l')
 		.description('file lint')
 		.action(function (dir) {
+            const lint = require('./lib/fileLint');
 			const filename = (typeof dir === 'undefined') ? process.cwd() : dir;
 			lint.init(filename);
 		})
@@ -274,6 +273,7 @@ function initFormat() {
 		.alias('f')
 		.description('file formater')
 		.action(function (dir) {
+            const format = require('./lib/fileFormat');
 			const filename = (typeof dir === 'undefined') ? process.cwd() : dir;
 			format.init(filename);
 		})
@@ -289,7 +289,7 @@ function initUncaught() {
 	program
 		.command('*')
 		.action(function (env) {
-			console.log('jdf error, invalid option: ' + env + '\nType "jdf -h" for usage.');
+			console.log('jdf error, invalid option: ' + env + '\nType "jdf -h" for help.');
 		});
 }
 
