@@ -7,9 +7,8 @@ const logger = require('jdf-log');
 
 module.exports = {
 	init: function (argv) {
-		if(jdf.init()){
-		  initCommandWithArgs(argv);
-        }
+		jdf.init();
+		initCommandWithArgs(argv);
 	}
 };
 
@@ -41,7 +40,7 @@ function initCommandWithArgs(argv) {
 		.option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
 
 	// 所有命令入口初始化
-	initInstall();
+	initStandardDir();
 	initBuild();
 	initOutput();
 	initUpload();
@@ -60,32 +59,19 @@ function initCommandWithArgs(argv) {
 	}
 }
 /**
- * 初始化install命令
+ * 初始化init命令
  */
-function initInstall() {
+function initStandardDir() {
 	program
-		.command('install [projectName]')
+		.command('init [projectName]')
 		.alias('i')
-		.description('create new project with template or not')
-		.option('-t, --template [name]', 'specify template name (widget|empty) [empty]', 'empty')
+		.description('create a new jdf project')
 		.action(mergeOptions((projectName, options) => {
-			var type = options.template;
-			projectName = projectName || (type == 'widget' ? 'jdf_widget' : 'jdf_init');
-			switch (type) {
-				case 'widget':
-					jdf.install('widget', projectName);
-					break;
-				case 'empty':
-					jdf.install('init', projectName);
-					break;
-				default:
-					console.log('You can "jdf install projectPath or "jdf install -t widget projectPath"');
-			}
+            jdf.createStandardDir(projectName);
 		}))
 		.on('--help', function () {
 			outputHelp([
-				'$ jdf install myProj',
-				'$ jdf install --template widget myProj'
+				'$ jdf init [projectName]'
 			]);
 		});
 }
