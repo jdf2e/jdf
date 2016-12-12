@@ -40,7 +40,7 @@ function mergeOptions(fn) {
 
 function initCommandWithArgs(argv) {
 	program
-		.version(jdf.version())
+		.version(require('./package.json').version)
 		.usage('[commands] [options]')
 		.option('-L, --logLevel [level]', `show more detail info. ['error', 'warn', 'info', 'verbose', 'debug', 'silly'] are candidates.`, 'info')
 		.option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
