@@ -40,16 +40,16 @@ function initCommandWithArgs(argv) {
 		.option('-v, --verbose', `show verbose info. a shortcut of '--logLevel verbose'`);
 
 	// 所有命令入口初始化
-	initInstall();
+	initStandardDir();
 	initBuild();
+    initServer();
 	initOutput();
 	initUpload();
 	initWidget();
-	initCompress();
-	initClean();
-	initServer();
 	initLint();
+    initCompress();
 	initFormat();
+    initClean();
 	initUncaught();
 
 	program.parse(argv);
@@ -59,32 +59,20 @@ function initCommandWithArgs(argv) {
 	}
 }
 /**
- * 初始化install命令
+ * 初始化init命令
  */
-function initInstall() {
+function initStandardDir() {
 	program
-		.command('install [projectName]')
+		.command('init [projectName]')
 		.alias('i')
-		.description('create new project with template or not')
-		.option('-t, --template [name]', 'specify template name (widget|empty) [empty]', 'empty')
+		.description('create a new jdf project')
 		.action(mergeOptions((projectName, options) => {
-			var type = options.template;
-			projectName = projectName || (type == 'widget' ? 'jdf_widget' : 'jdf_init');
-			switch (type) {
-				case 'widget':
-					jdf.install('widget', projectName);
-					break;
-				case 'empty':
-					jdf.install('init', projectName);
-					break;
-				default:
-					console.log('You can "jdf install projectPath or "jdf install -t widget projectPath"');
-			}
+            jdf.createStandardDir(projectName);
 		}))
 		.on('--help', function () {
 			outputHelp([
-				'$ jdf install myProj',
-				'$ jdf install --template widget myProj'
+                '$ jdf init',
+				'$ jdf init [projectName]'
 			]);
 		});
 }
@@ -95,19 +83,13 @@ function initBuild() {
 		.alias('b')
 		.description('build project')
 		.option('-o, --open', 'auto open html/index.html')
-		.option('-C, --combo', 'combo debug for online/RD debug')
-		.option('-c, --css', 'compile less/scss file in current dir')
-		.option('-p, --plain', 'output project with plain')
 		.action(mergeOptions((options) => {
 			jdf.build(options);
 		}))
 		.on('--help', function () {
 			outputHelp([
 				'$ jdf build',
-				'$ jdf build --combo',
 				'$ jdf build --open',
-				'$ jdf build --css',
-				'$ jdf build --plain'
 			])
 		});
 }
@@ -160,13 +142,12 @@ function initWidget() {
 		.command('widget')
 		.alias('w')
 		.description('create/install/preview/publish widgets')
+        .option('-c, --create <widgetName>', 'create a widget to local')
 		.option('-a, --all', 'preview all local widgets')
 		.option('-l, --list', 'get widget list from server')
-		.option('-f, --force')
-		.option('-p, --preview <widgetName>', 'preview a widget')
 		.option('-i, --install <widgetName>', 'install a widget to local')
-		.option('-P, --publish <widgetName>', 'publish a widget to server')
-		.option('-c, --create <widgetName>', 'create a widget to local')
+		.option('-p, --publish <widgetName>', 'publish a widget to server')
+        .option('-f, --force', 'force corver when publish or install widget')
 		.action(mergeOptions((options) => {
             const widget = require('./lib/widget');
 			options.force = options.force || false;
@@ -176,10 +157,6 @@ function initWidget() {
 
 			if (options.list) {
 				widget.list();
-			}
-
-			if (options.preview) {
-				widget.preview(options.preview);
 			}
 
 			if (options.install) {
@@ -196,12 +173,12 @@ function initWidget() {
 		}))
 		.on('--help', function () {
 			outputHelp([
+                '$ jdf widget --create widgetName',
 				'$ jdf widget --all',
 				'$ jdf widget --list',
-				'$ jdf widget --preview myWidget',
 				'$ jdf widget --install ui-header --force',
 				'$ jdf widget --publish myWidget',
-				'$ jdf widget --create myWidget'
+                '$ jdf widget --force'
 			])
 		});
 }
