@@ -71,6 +71,7 @@ function initStandardDir() {
 		}))
 		.on('--help', function () {
 			outputHelp([
+                '$ jdf init',
 				'$ jdf init [projectName]'
 			]);
 		});
@@ -82,19 +83,13 @@ function initBuild() {
 		.alias('b')
 		.description('build project')
 		.option('-o, --open', 'auto open html/index.html')
-		.option('-C, --combo', 'combo debug for online/RD debug')
-		.option('-c, --css', 'compile less/scss file in current dir')
-		.option('-p, --plain', 'output project with plain')
 		.action(mergeOptions((options) => {
 			jdf.build(options);
 		}))
 		.on('--help', function () {
 			outputHelp([
 				'$ jdf build',
-				'$ jdf build --combo',
 				'$ jdf build --open',
-				'$ jdf build --css',
-				'$ jdf build --plain'
 			])
 		});
 }
