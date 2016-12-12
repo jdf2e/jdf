@@ -42,14 +42,14 @@ function initCommandWithArgs(argv) {
 	// 所有命令入口初始化
 	initStandardDir();
 	initBuild();
+    initServer();
 	initOutput();
 	initUpload();
 	initWidget();
-	initCompress();
-	initClean();
-	initServer();
 	initLint();
+    initCompress();
 	initFormat();
+    initClean();
 	initUncaught();
 
 	program.parse(argv);
