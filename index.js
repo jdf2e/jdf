@@ -216,11 +216,12 @@ function initServer() {
 	program
 		.command('server')
 		.alias('s')
+        .option('-o, --open', 'auto open browser when server started successfully.')
 		.description('debug for online/RD debug')
-		.action(function () {
+		.action(mergeOptions((options) => {
             const bs = require('./lib/server/browserSyncServer');
-			bs.startup();
-		})
+			bs.startup('', {autoOpen: options.open});
+		}))
 		.on('--help', function () {
 			outputHelp(['$ jdf server']);
 		});
