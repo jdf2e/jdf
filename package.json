@@ -49,7 +49,7 @@
     "iconv-lite": "^0.4.10",
     "jdf-images": "^1.0.4",
     "jdf-img-minify": "0.0.3",
-    "jdf-log": "^0.0.3",
+    "jdf-log": "^0.0.4",
     "jdf-upload": "^0.1.4",
     "jdf-utils": "^1.0.8",
     "js-beautify": "1.5.4",
