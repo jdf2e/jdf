@@ -1,35 +1,38 @@
-#本地server
+#jdf server
 
 ##简介
-* 前端开发有时候我们需要引入线上静态资源，而本地并不关注这些资源，比如公共脚本jQuery，公共头尾样式图片等。
-* 利用server，我们可以把线上资源指定在本地目录，如果本地有和线上相同路径的资源，如果没有则直接取线上。
-* 完全可取代Fiddler，真正实现本地半离线开发，无需修改一次提交一次代码到测试服务器。
+在本地开发时，需要利用谷歌插件辅助开发或需要调试ajax，jsonp，这个时候就需要将开发文件置于服务器中。
+`jdf server | jdf s`命令用于开启一个静态服务器，类似[http-server](https://github.com/indexzero/http-server)，可以在任何目录即使该目录下不是JDF工程开启一个静态服务器。
 
-##使用方法
+##命令参数
 
-* 安装[chrome插件host文件管理工具](https://chrome.google.com/webstore/detail/hostadmin/oklkidkfohahankieehkeenbillligdn) , 此工具支持即时切换hosts，无须浏览多次刷新页面，同时不修改系统的默认hosts，我们的server即基于此规则来取，如果本地没有资源直接用线上来取。
+* `--open` 或 `-o`，在开启静态服务器的同时，自动在浏览器中打开当前目录文件列表页面
+* `--watch` 或 `-w`，监听当前目录的文件改动，并实时在浏览器中刷新改动内容
+* `--help` 或 `-h`，查看jdf server帮助
 
-* 在任意项目文件夹执行
+##控制台信息
 
-		jdf build -combo
+编译成功后，控制台中会打印如下信息：
 
-* 或者磁盘任意文件下执行
-	
-		jdf server
+    [JDFX] Access URLs:
+     --------------------------------------
+           Local: http://localhost:80
+        External: http://192.168.191.1:80
+     --------------------------------------
+              UI: http://localhost:3001
+     UI External: http://192.168.191.1:3001
+     --------------------------------------
 
-这样本地server就跑出来了，默认端口号为80端口
+* `Local`，本地服务器地址
+* `External`，同网段内其他机器访问地址，用于移动端访问
+* `UI`，jdf服务器控制面板地址
+* `UI External`，同网段内访问服务器控制面板地址，从这个入口可开启weinre，模拟网络限流等功能
 
-* 用hosts切换工具把静态资源cdn路径配置本地hosts，如
+## TIPS
+* `jdf server`只提供静态服务和部分类型文件监听功能，不对任何文件进行编译，如果需要编译sass,es6,tpl，请使用[`jdf build`](a_tool_build.md)。
+* 建议使用`jdf server`来做简单的原型开发，demo测试，开发项目选用`jdf build`。
+* 利用`jdf server -w`开发过程中在浏览器实时预览静态文件的改动，解放F5。
 
-	cdn.com 127.0.0.1
+## THANKS
+* 感谢[browserSync](https://github.com/browsersync/browser-sync)提供底层服务支持
 
-* 项目联调阶段：本地修改项目文件夹下的静态文件，刷新浏览器下，我们会发现，cdn域名下的静态文件即指定我们修改后的文件
-* 线上调试BUG阶段：下载某一线上对应svn下的静态文件，修改，刷新浏览器即可进行调试，因为本地没有静态资源我们的server会从线上直接抓取
-
-##todo
-
-* url映射本地指定目录配置
-* ip访问
-* combo合并的文件也从本地来取
-* 可配置指定文件类型转发
-* css合并后的文件如何本地开发?
