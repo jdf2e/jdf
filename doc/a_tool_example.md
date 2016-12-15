@@ -92,8 +92,7 @@ helloworld/
 
 * myPage.html页面显示效果
 
-<font size=18>welcome <font color="blue">FEer</font></font>
-<font color="red">hope you enjoy jdf</font>
+    ![myPage](http://img10.360buyimg.com/uba/jfs/t3859/296/484880740/2242/f0dafc20/58527f94N53cb0cbc.jpg)
 
 * 随意改动html,vm,js,scss文件，保存，可以在浏览器中看到改动同步刷新了。
 
