@@ -1,49 +1,25 @@
-# 利用jdf调试移动设备的页面
+# jdf集成的weinre使用
 
-一直以来，在移动设备上都缺少类似Firebug、Chrome dev的开发工具，导致在这些移动设备上调试页面是一件非常头疼的事情。
-今天利用jdf，你可以通过三步轻松的搞定这件事情。
+[weinre](http://people.apache.org/~pmuellr/weinre/)是一个远程调试工具，可以在PC端的开发者工具中远程调试移动设备浏览器上的页面。
+单独配置weinre比较麻烦，jdf集成weinre，提供一个简便的方式来使用weinre。
 
-#### 一、需要在本地进行一些简单的设置
-1、在当前项目的`config.json`中打开调试开关<b style="color: red;">（切记：在调试完页面之后，一定要关闭此开关，然后重新输出项目）</b>
-```javascript
-"build":{
-    "weinre": true //true为打开，false为关闭
-}
-```
-2、打开fiddler，确认其设置的端口号，一般默认为8888
-3、手机连接电脑热点wifi，将手机的wifi设置中的`HTTP代理`设置为手动。
-其中的“服务器”设置为连接的电脑ip地址，端口号要与fiddler一致。如下图所示：
-<img style="margin: 10px; box-shadow: 0 0 10px rgba(0,0,0,.2)" src="http://img30.360buyimg.com/uba/jfs/t2755/132/3822634990/56043/a37f6a33/579b1fddNe3759a60.png" height=500 alt="">
+##使用步骤
+####1、用`jdf build`或`jdf server`开启jdf服务
+####2、在移动设备上打开调试页面
+* 使用命令行控制台显示的`External`地址
+* 或者扫描`jdf b -o`弹出页面上的二维码
+####3、在PC浏览器上打开jdf服务管理界面
+1. 使用命令行控制台显示的`UI External`地址
+2. 选择管理界面左侧的Remote Debug
+3. 开启Remote Debugger(weinre)开关
+4. 点击开关下的Access remote debugger红色链接，弹出weinre调试界面
+####4、使用weinre
+1. 弹出的调试界面上有Targets、Clients，Server Properties三个属性
+2. Targets，可调试的移动页面列表，检测不到显示none，如果检测不到看操作是否是按上述步骤进行的。
+3. 点击Targets上需要调试的链接，变绿后选择Elements选项卡，把鼠标移到DOM节点上即可看到在移动设备上显示选中的框。
+4. 完成上述步骤就可以像在F12中调试PC页面一样调试移动端页面了。
 
-#### 二、上传项目到测试服务器
-
-```javascript
-jdf upload -nc
-jdf upload -nh
-```
-
-分别执行以上两条命令，上传html、css、js、图片等文件到测试服务器，然后在电脑上打开项目的测试地址，例如：
-```javascript
-http://page.jd.com/test/html
-```
-
-你会看到当前项目的文件列表中多了一个`_debug.html`
-```html
-_debug.html                                        14-Aug-2015 02:20     390
-index.html                                         14-Aug-2015 02:20    5831
-test.html                                          14-Aug-2015 02:20     688
-```
-点击它，会看到项目中所有的html页面链接，点击你要调试的页面，就会打开一个类似于`Chrome dev`的调试工具。
-
-
-#### 三、在移动设备上打开测试服务器上需要调试的页面，例如：
-```html
-http://page.jd.com/test/index.html
-```
-
-#### 四、没有第四了，接下来你可以在pc上尽情的调试移动设备上的页面了。
-
-注意：项目开发完毕以后，一定要将第一步中的开关置为关闭状态，然后再重新输出上线文件。
-
+##使用不便的地方
+* weinre的链接很脆弱，如果修改了本地文件，那么就需要重新执行上述步骤
 
 

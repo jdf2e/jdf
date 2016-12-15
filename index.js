@@ -217,13 +217,18 @@ function initServer() {
 		.command('server')
 		.alias('s')
         .option('-o, --open', 'auto open browser when server started successfully.')
+        .option('-w, --watch', 'watch html file change and reload browser automatically.')
 		.description('debug for online/RD debug')
 		.action(mergeOptions((options) => {
-            const bs = require('./lib/server/browserSyncServer');
-			bs.startup('', {autoOpen: options.open});
+            jdf.server(options);
 		}))
 		.on('--help', function () {
-			outputHelp(['$ jdf server']);
+			outputHelp([
+                '$ jdf server',
+                '$ jdf server --open',
+                '$ jdf server --watch',
+                '$ jdf server -ow  auto open and watch html file change'
+            ]);
 		});
 }
 
