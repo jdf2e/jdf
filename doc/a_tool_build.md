@@ -39,7 +39,7 @@
 ##使用方法
 
 ###PC端
-* 用`jdf install init xxx`创建jdf工程后，在控制台输入`jdf b -o`后保留这个控制台运行，方便实时调试；
+* 用`jdf init xxx`创建jdf工程后，在控制台输入`jdf b -o`后保留这个控制台运行，方便实时调试；
 * 在自动打开的浏览器页面中点击导航到开发页面，编辑widget等文件，查看浏览器的同步改动；
 * 引用mock来模拟数据生成和读取，建议[mock](https://github.com/nuysoft/Mock)。
 * 去除mock引用，[切换hosts](https://github.com/oldj/SwitchHosts)，模拟线上环境。
