@@ -1,7 +1,7 @@
 # 命令手册
 
-## jdf install
-* `jdf install init xxx`，在本地初始化一个jdf的标准项目，目录结构如下所示。`xxx`可省略，省略后默认的项目名称为`jdf_init`。
+## jdf init
+* `jdf init xxx`，在本地初始化一个jdf的标准项目，目录结构如下所示。`xxx`可省略，省略后默认的项目名称为`jdf_init`。
 
 <pre>
 jdf_init
@@ -14,79 +14,114 @@ jdf_init
 ├── widget           //页面中用到的所有widget
 </pre>
 
-jdf的详细配置文档，可点击[这里](a_tool_config.md)进行查阅。
-
-* `jdf install demo`，下载安装一个[jdf示例](a_tool_example.md)
-
 ## jdf build
-执行此命令jdf会开启一个[本地服务](a_tool_server.md)用来构建项目，默认端口为`80`。
+执行此命令jdf会开启一个[本地服务](a_tool_server.md)用来构建项目，默认端口为`8080`
 
-* `-open`，在开启本地服务的同时，自动打开`html/index.html`
-* `-css xxx`，把less/sass编译为css
-* `-plain`，编译项目引用的widget，sass文件，并不对文件进行任何形式的压缩和替换
+* 此命令可简写为`jdf b`
+* `-o`或者`--open`，开启本地服务的同时，自动在浏览器打开当前项目
+
+## jdf server
+执行此命令，仅仅会在本地开启一个静态服务器，不会对文件进行任何编译构建
+
+* 此命令可简写为`jdf s`
+* `-o`或者`--open`，开启本地服务的同时，自动在浏览器打开当前项目
 
 ## jdf output
 
-输出当前项目到`build`文件夹，所谓的“输出”，指的是jdf会自动做以下几件事情：
+编译当前项目，输出到`build`文件夹，所谓的『输出』，指的是jdf会自动做以下几件事情：
 
-* 替换文件中的[widget](core_widget.md)引用标签为实际内容
-* 把less/sass文件编译为css
-* 合并压缩css、js、png文件，使用[cssSprite](a_tool_csssprite.md)技术将小图片合并为一张大图
-* 给css文件中引用的背景图片添加cdn
+* 此命令可简写为`jdf o`
+* 编译html文件中引用的[widget](core_widget.md)
+* 编译less/sass文件为css
+* 自动将html文件中使用`seajs.use`引用的js路径替换为cdn服务器的绝对路径
+* 自动将html文件中引用的css，js相对路径替换为cdn服务器的绝对路径
+* 自动给css文件中引用的背景图片添加cdn
+* 压缩css、js、图片文件，并且可根据当前项目中的文件数量自动决定是否启用多线程进行压缩，当前的数量阀值是`200`
+* 自动给js，css文件的内容头部添加时间戳，例如：
+
+```css
+/* jdf-test css_background_url.css Date:2016-12-13 18:33:13 */
+```
+
+* 自动对html文件中引用的css，js路径进行combo，例如以下两个js路径：
+
+```html
+<script src="http://misc.360buyimg.com/test/a.js"></script>
+<script src="http://misc.360buyimg.com/test/b.js"></script>
+```
+
+进行combo之后为：
+```html
+<script src="http://misc.360buyimg.com/test/??a.js,b.js"></script>
+```
+
+* 生成精灵图[cssSprite](a_tool_csssprite.md)
+* 生成base64编码
 
 ---
 
-* `-html`，只输出html文件到build目录中
-* dirname，输出到自定义的文件夹中
-* `-debug`，输出未压缩的css、js、图片文件
+* `-d`或者`--debug`，以debug的模式输出当前项目，不压缩项目中的任何文件
+* `-v`或者`--verbose`，将会详细输出当前项目每一个文件的编译信息。此参数特别适用于输出时卡死的情况，可以方便的查看问题出在了哪一个文件上
+* `-p`或者`--plain`，只编译widget、less、scss，不做任何其它处理。此模式适用于页面是由前端开发，然后需要把页面交付给后端的同学来完成剩下的工作
+* 支持输出指定的文件夹，例如：`jdf o js`
+* 支持输出指定的文件，例如：`jdf o js/a.js`
+* 支持简单的通配符，例如：`jdf o js/**/*.js`，将只输出`js`文件夹下所有的js文件
 
 ## jdf upload
 
-把当前项目上传到测试服务器。直接执行`jdf upload`时，只上传js、css、图片文件到测试服务器。
+把当前项目上传到测试服务器
 
-* dirname，只上传指定的文件夹/文件到测试服务器
-* `-debug`，上传时不压缩js、css、图片文件，以方便测试
-* `-preview`，只上传html文件到测试服务器
-* `-nc`，上传css/js/widget/至misc.360buyimg.com文件夹，其间把html中静态资源misc.360buyimg.com替换为page.jd.com:81
-* `-nh`，上传html/至page.jd.com，其间把html中静态资源misc.360buyimg.com替换为page.jd.com:81
-
-其中page.jd.com:81可以直接访问，而misc.360buyimg.com是线上cdn路径，访问测试机器需要配置hosts，即`jdf upload -nc`和`jdf upload -nh`两条命令解决了配置hosts的问题
+* 可简写为`jdf u`
+* 目前支持三种上传模式：ftp，sftp，http
+* `-d`或者`--debug`，以debug的模式输出当前项目，不压缩项目中的任何文件
+* `-p`或者`--plain`，只编译widget、less、scss，不做任何其它处理。此模式适用于页面是由前端开发，然后需要把页面交付给后端的同学来完成剩下的工作
+* `-P`或者`--preview`，将当前项目上传到`previewServerDir`配置的目录之下
+* 支持输出指定的文件夹，例如：`jdf o js`
+* 支持输出指定的文件，例如：`jdf o js/a.js`
+* 支持简单的通配符，例如：`jdf o js/**/*.js`，将只输出`js`文件夹下所有的js文件
 
 ## jdf widget
 
-* `-create xxx`，创建一个widget
-* `-all`，预览当前项目中的所有widget
-* `-preview xxx`，预览指定的widget
-* `-list`，获取服务器上所有的widget列表
-* `-install xxx`，下载安装widget到本地项目中
-* `-publish xxx`，发布widgt到服务器上
-
-## jdf server
-
-开启一个[本地服务](a_tool_server.md)用来调试代码，默认端口为`80`
+* 可简写为`jdf w`
+* `--create xxx`，创建一个widget
+* `--all`，预览当前项目中的所有widget
+* `--preview xxx`，预览指定的widget
+* `--list`，获取服务器上所有的widget列表
+* `--publish xxx`，发布widgt到服务器上
+* `--install xxx`，安装指定的widget到当前项目
 
 ## jdf lint
 
 html、css、js文件代码质量检查工具，详细用法可点击[这里](a_tool_lint.md)
 
+* 可简写为`jdf l xxx`，后面跟指定的文件夹/文件
+
 ## jdf format
 
 html、css、js文件格式化工具，详细用法可点击[这里](a_tool_format.md)
+
+* 可简写为`jdf f xxx`，后面跟指定的文件夹/文件
 
 ## jdf compress
 
 html、css、js文件压缩工具，详细用法可点击[这里](a_tool_deploy.md)
 
+* 可简写为`jdf c xxx`，后面跟指定的文件夹/文件
+
 ## jdf clean
 
-清理jdf缓存文件，遇到比较反常的现象时，可尝试执行一下此命令
+清理jdf缓存文件，遇到比较反常的现象时，可尝试执行此命令
 
 ## jdf -h
 
 获取jdf的帮助信息
 
-## jdf -v
+## jdf -V
 
-获取jdf的当前版本号
+获取jdf的当前版本号，注意是大写的`V`
+
+## jdf参数配置文档
+
+请参考：[jdf参数配置文档](a_tool_config.md)进行查阅。
 
 
