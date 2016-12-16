@@ -1,67 +1,159 @@
-# 快速入门
+#Getting Started
+##欢迎使用jdf。
+jdf是一个前端工程框架，通过提供若干命令行，jdf可以创建工程，编译，在线调试，输出压缩代码等。
+### 安装jdf
+```
+npm install -g jdfx
+```
+安装完成后运行`jdf -h`，查看jdf所有命令。
 
-## 安装使用
+### 新建工程
+* 使用`jdf init xxx`来创建一个符合jdf规范目录的工程，比如创建一个名为helloworld的工程：
 
-jdf命令行工具是jdf前端集成解决方案的工具集，基于node.js和npm，jdf前需要先安装[node.js](http://nodejs.org/download/)，然后通过npm命令安装jdf
-	
-	npm install jdf -g
-安装测试，执行如下命令，如果出现版本号则说明你已安装成功
+```
+jdf init helloworld
+```
 
-	jdf -v
-更新jdf
-		
-	npm update jdf -g
+* `cd helloworld`进入工程根目录，在工程根目录下运行如下命令创建一个widget：
 
-## 新建项目目录
-在本机svn目录，主干上新建项目，比如product下项目test，即svn目录为/product/test
-注：product为大项目名，test为测试项目
+```
+~/jd/web$ cd helloworld/
+~/jd/web/helloworld$ jdf widget --create myWidget 
+```
 
-## 初始化项目
-从命令行下进入test文件夹，在命令行执行如下命令，生成标准化的项目文件夹
-	
-	jdf install init
+根据提示一直输入`y`，创建myWidget包含的文件，默认提供模板vm,脚本js,样式scss,数据json，这些都是可选的，更多关于widget的信息请参见[widget](core_widget.md).
+下面的命令在没有指明的情况下，都在helloworld目录下运行。
+* 创建widget后，得到的目录结构如下：
+```
+helloworld/
+├── config.json
+├── css
+│   └── i
+├── html
+│   └── index.html
+├── js
+└── widget
+    └── myWidget
+        ├── component.json
+        ├── myWidget.js
+        ├── myWidget.json
+        ├── myWidget.scss
+        └── myWidget.vm
+```
 
-test文件中里包括css、html、js、widget、config.json，其中config.json为配置文件，所有配置都需要修改此文件
+这样，一个jdf工程的创建就完成了。
 
-注1：json文件不允许有注释，单双引号使用时也需要统一
-注2：windows7下在当前文件夹打开命令行的方法：Shift+鼠标右键，选择"在此处打开命令窗口"
-注3：windows下CMD路径常用操作如下
-		
-	C:\Documents and Settings\Administrator>d: //C盘进入D盘
-	C:\Documents and Settings\Administrator>cd xxx //进行C盘xxx目录
-	C:\Documents and Settings\Administrator\xxx>cd .. //返回上一层目录
+###进入开发阶段
+####引用widget到html页面
+* 新建html/myPage.html文件
+* 将myWidget引入myPage.html
 
-## 项目开发
-在html，js，css等文件夹中新建相应文件
-在widget文件夹新建抽离规划好的widget模块
-在当前项目中，新建widget的命令为`jdf widget -create xxx`
+```
+<body>
+{%widget name="myWidget" %}
+</body>
+```
 
-## 本地预览调试
-可以通过`jdf build` 在浏览器中查看构建后的当前工程，包括less，sass编译，widget编译等
-	
-	jdf build
+利用`{%widget %}`标签引用widget，jdf在执行编译和输出命令时会将widget里的信息编译进来。当然，如果只需要引用widget的css和vm文件，那么可以加`type`属性：
 
-注意
+```
+{%widget name="myWidget" type="css, vm" %}
+```
 
-* 本地服务器默认启用80端口，如果此端口被占用，工具会自动启动1080端口，也可以通过`config.json`中`localServerPort`指定新端口
-* 命令执行后工具本地服务器会一直运行，可以使用`ctrl+c`命令退出本地server
-* 如果发现本地服务器在浏览器输出的文件夹和本地项目不一致，可通过`jdf clean`，清除服务器后台缓存，强制同步一次
+####编写widget内容
+* 在`myWidget.vm`中输入：
 
-本地调试服务器启动成功后，可能通过`jdf build -open`命令自动打开浏览器，也可以复制`http://localhost/`在浏览上打开，同时后台内置了监听文件夹功能，如果在IDE里修改、新增、删除任何文件/文件夹，均会同步至后台，浏览器里访问总是最新的代码
+```
+<p class="p1">welcome <span>FEer</span></p>
+<p class="p2">hope you enjoy jdf!</p>
+```
 
-在浏览器中查看release后的工程，包括所有widget中js，css合并后效果，可以执行命令如下
+* 在`myWidget.scss`中输入：
 
-	jdf release
+```
+.p1 {
+    font-size: 18px;
+    span {
+        color: blue;
+    }
+}
+.p2 {
+    color: red;
+}
+```
+
+####启动开发调试模式
+欢迎进入欢快的开发阶段！
+
+* 运行`jdf build -o`，编译工程并自动打开浏览器，假设打开的网址为:
+`http://192.168.191.1:8080`，
+可以通过点击页面的文件路径一直跳转到:
+`http://192.168.191.1:8080/html/myPage.html`
+
+* myPage.html页面显示效果
+
+    ![myPage](http://img10.360buyimg.com/uba/jfs/t3859/296/484880740/2242/f0dafc20/58527f94N53cb0cbc.jpg)
+
+* 随意改动html,vm,js,scss文件，保存，可以在浏览器中看到改动同步刷新了。
+
+你的项目开发进度良好！
 
 
-## 项目输出
-`jdf output`输出项目文件夹，包括压缩合并后的css，js，images，静态资源加cdn前缀，同时压缩所有png图片
-`jdf output js/test.js，css` 自定义输出自己需要的文件或文件夹
+#### 输出项目
+项目开发完以后，需要将编译后的文件放到线上服务器或者CDN，因此需要输出项目内容。
 
-## 项目联调和发布
-`jdf upload` 发布至远端145机器，主要包括css/js/widget，供产品，设计师查看效果，以及后端工程师联调
-`jdf upload -preview` 输出html，并上传至http://page.jd.com下
-	
+执行`jdf output`，jdf默认会将项目输出到`build`目录中，如果在config.json配置了`projectPath`，那么就会输出到`build/projectPath`中，例如
 
-## 项目备份
-`jdf output -backup` 备份app目录至tags文件夹，供和已线上版本对比
+```
+projectPath: 'helloworld/1.0.0'
+```
+
+那么输出的目录结构为：
+
+```
+build/
+└── helloworld
+    └── 1.0.0
+        ├── html
+        │   └── index.html
+        │   └── myPage.html
+        └── widget
+            └── myWidget
+                ├── component.json
+                ├── myWidget.css  // scss -> css
+                ├── myWidget.js
+                └── myWidget.json
+```
+
+恭喜你的项目开发完毕，让我们启动服务器试试输出的项目能不能工作吧！
+
+#### 启动服务器
+进入build/helloworld/1.0.0目录，运行`jdf server`命令，开启一个静态服务器来查看输出结果是否正确。
+
+```
+~/jd/web/helloworld/build/helloworld/1.0.0$ jdf server -o
+```
+
+由于`jdf output`会根据你在config.json文件中的配置定制输出，通过`jdf server`来查看这些配置是否会影响页面效果是很有必要的。
+
+检查完毕，页面和预期完全一致
+
+#### 上传到测试服务器测试
+代码开发完毕，后端和业务方需要查看效果，这个时候就可以把代码上传到测试服务器，让大家都能访问。
+
+jdf上传的测试服务器可以是基于HTTP、FTP、SFTP协议的服务器，在config.json中配置好服务器地址：
+
+```
+host: xx.xx.xx.93
+```
+
+然后执行：
+```
+jdf upload
+```
+
+这样就上传到测试服务器了，邀请团队的小伙伴来查看你的成果吧。
+
+##结语
+通过上述操作，你已经掌握jdf的主要功能，可以进行完整的工程开发了。jdf还有很多特性，我们也提供了完善的说明文档，欢迎探索。
+
