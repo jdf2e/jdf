@@ -1,9 +1,9 @@
 {
-  "name": "jdf",
-  "description": "京东前端开发集成解决方案",
-  "version": "2.0.9",
+  "name": "jdfx",
+  "description": "京东前端自动化构建工具",
+  "version": "3.0.1",
   "author": {
-    "name": "jdf",
+    "name": "jdfx",
     "email": "chenxiaochun@jd.com"
   },
   "homepage": "https://github.com/jdf2e/jdf",
@@ -15,7 +15,7 @@
     "jdf": "bin/jdf"
   },
   "engines": {
-    "node": ">= 4.4.0"
+    "node": ">= 4.4.5"
   },
   "main": "index.js",
   "scripts": {
