@@ -91,8 +91,8 @@ helloworld/
 `http://192.168.191.1:8080/html/myPage.html`
 
 * myPage.html页面显示效果
-<span style="font-size: 18px;">welcome <span style="color:blue">FEer</span></span>
-<p style="color: red;">hope you enjoy jdf</p>
+
+    ![myPage](http://img10.360buyimg.com/uba/jfs/t3859/296/484880740/2242/f0dafc20/58527f94N53cb0cbc.jpg)
 
 * 随意改动html,vm,js,scss文件，保存，可以在浏览器中看到改动同步刷新了。
 
