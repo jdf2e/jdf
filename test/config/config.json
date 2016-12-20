@@ -1,0 +1,10 @@
+{
+    "host": "ftpServerIp",
+    "user": "anonymous",
+    "password": "anonymous",
+    "projectPath": "test/1.0.1",
+    "output": {
+        "cssAutoPrefixer": false,
+        "excludeFiles": ["psd", "doc"]
+    }
+}
