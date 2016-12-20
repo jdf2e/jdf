@@ -19,7 +19,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "test/test.js"
+    "test": "test/index.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,6 @@
     "commander": "^2.9.0",
     "csslint": "0.10.0",
     "escape-string-regexp": "^1.0.5",
-    "expect.js": "0.3.1",
     "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
     "html-minifier": "0.6.9",
@@ -66,5 +65,9 @@
     "uglify-js": "2.4.12",
     "uuid": "^3.0.0",
     "velocityjs": "0.4.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
