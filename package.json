@@ -61,6 +61,7 @@
     "node-watch": "^0.3.4",
     "postcss": "^5.2.5",
     "shelljs": "^0.7.5",
+    "strip-json-comments": "^2.0.1",
     "tar": "0.1.19",
     "uglify-js": "2.4.12",
     "uuid": "^3.0.0",
