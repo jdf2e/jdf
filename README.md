@@ -1,7 +1,6 @@
-
-[![NPM version](https://badge.fury.io/js/jdfx.png)](http://badge.fury.io/js/jdfx)
-
 [![NPM](https://nodei.co/npm/jdfx.png?downloads=true)](https://nodei.co/npm/jdfx/)
+
+[![NPM version](https://badge.fury.io/js/jdfx.png)](http://badge.fury.io/js/jdfx)  [![Build Status](https://travis-ci.org/jdf2e/jdf.svg?branch=master)](https://travis-ci.org/jdf2e/jdf)
 
 ## 关于JDFX
 
