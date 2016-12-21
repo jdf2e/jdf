@@ -2,4 +2,7 @@
 
 require('./config');
 
+require('./buildcss');
+
 require('./urlReplace');
+
