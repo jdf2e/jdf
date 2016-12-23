@@ -1,7 +1,7 @@
 {
   "name": "jdfx",
   "description": "京东前端自动化构建工具",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "author": {
     "name": "jdfx",
     "email": "chenxiaochun@jd.com"

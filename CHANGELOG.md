@@ -1,6 +1,6 @@
 ##changelog
 
-### 3.0.2 / 2016/12/22 10:04:00
+### 3.0.3 / 2016/12/22 11:04:00
 * [add] 增加{%widgetOutputName="" type="" %}标签，可以指定本页面js，css的输出文件名
 * [fix] 修复seajs依赖匹配错误
 * [fix] 修复本地服务器解析combo路径的bug
