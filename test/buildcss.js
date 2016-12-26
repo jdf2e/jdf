@@ -7,7 +7,7 @@ const expect = require('expect.js');
 const VFS = require('../lib/VFS/VirtualFileSystem');
 const buildCss = require('../lib/buildCss');
 
-describe('测试buildcss', function () {
+describe('测试编译css', function () {
     let cssfileDir = path.join(process.cwd(), 'test/vfs/files');
     describe('buildcss in VFS', function () {
         it('#handleLess', function (done) {
@@ -24,6 +24,15 @@ describe('测试buildcss', function () {
             let vfile = VFS.queryFile(filename);
             let tContent = vfile.targetContent;
             buildCss.handleSass(vfile).then(function () {
+                expect(tContent).not.to.equal(vfile.targetContent);
+                done();
+            });
+        });
+        it('#postCSSProcess', function (done) {
+            let filename = path.join(cssfileDir, 'css.css');
+            let vfile = VFS.queryFile(filename);
+            let tContent = vfile.targetContent;
+            buildCss.postCSSProcess(vfile).then(function () {
                 expect(tContent).not.to.equal(vfile.targetContent);
                 done();
             });

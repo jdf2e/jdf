@@ -3,8 +3,9 @@
 const path = require('path');
 const expect = require('expect.js');
 
-const VFS = require('../lib/VFS/VirtualFileSystem');
+require('./vfs/virtual-file');
 
+const VFS = require('../lib/VFS/VirtualFileSystem');
 // npm run test
 const testDir = path.join(process.cwd(), './test');
 VFS.setOriginDir(testDir);
@@ -22,5 +23,5 @@ require('./config');
 
 require('./buildcss');
 
-require('./urlReplace');
+// require('./urlReplace');
 
