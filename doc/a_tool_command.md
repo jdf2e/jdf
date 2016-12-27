@@ -1,4 +1,4 @@
-# 命令手册
+# 命令文档
 
 ## jdf init
 * `jdf init xxx`，在本地初始化一个jdf的标准项目，目录结构如下所示。`xxx`可省略，省略后默认的项目名称为`jdf_init`。
@@ -15,13 +15,13 @@ jdf_init
 </pre>
 
 ## jdf build
-执行此命令jdf会开启一个[本地服务](a_tool_server.md)用来构建项目，默认端口为`8080`
+执行此命令jdf会开启一个[本地服务](a_tool_server.md)用来构建项目，一般是用在项目的开发阶段。默认端口为`8080`，如果已被占用，系统会自动开启一个新的端口
 
 * 此命令可简写为`jdf b`
 * `-o`或者`--open`，开启本地服务的同时，自动在浏览器打开当前项目
 
 ## jdf server
-执行此命令，仅仅会在本地开启一个静态服务器，不会对文件进行任何编译构建
+执行此命令，仅仅会在本地开启一个静态服务器，不会对文件进行任何编译构建，不依赖于jdf的标准目录结构，这也是它和`build`命令的区别所在
 
 * 此命令可简写为`jdf s`
 * `-o`或者`--open`，开启本地服务的同时，自动在浏览器打开当前项目
@@ -37,20 +37,36 @@ jdf_init
 * 自动将html文件中使用`seajs.use`引用的js路径替换为cdn服务器的绝对路径
 * 自动将html文件中引用的css，js相对路径替换为cdn服务器的绝对路径
 * 自动给css文件中引用的背景图片添加cdn
+* 自动给css样式添加浏览器前缀
+    * 你只需要写纯css样式，不需要手动加浏览器前缀 
+    * 根据当前浏览器的流行度和对当前css属性的支持度，自动添加相应的浏览器前缀
+    * 添加的规则数据基于[caniuse](http://caniuse.com/)
+
+```
+a {
+    display: flex;
+}
+```
+```
+a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+```
+
 * 压缩css、js、图片文件，并且可根据当前项目中的文件数量自动决定是否启用多线程进行压缩，当前的数量阀值是`200`
 * 自动给js，css文件的内容头部添加时间戳，例如：
-
 ```css
 /* jdf-test css_background_url.css Date:2016-12-13 18:33:13 */
 ```
 
 * 自动对html文件中引用的css，js路径进行combo，例如以下两个js路径：
-
 ```html
 <script src="http://misc.360buyimg.com/test/a.js"></script>
 <script src="http://misc.360buyimg.com/test/b.js"></script>
 ```
-
 进行combo之后为：
 ```html
 <script src="http://misc.360buyimg.com/test/??a.js,b.js"></script>
@@ -77,6 +93,7 @@ jdf_init
 * `-d`或者`--debug`，以debug的模式输出当前项目，不压缩项目中的任何文件
 * `-p`或者`--plain`，只编译widget、less、scss，不做任何其它处理。此模式适用于前端同学仅仅做静态页面，然后把页面交付给后端的同学来完成剩下的工作
 * `-P`或者`--preview`，将当前项目上传到`previewServerDir`配置的目录之下
+* `-v`或者`--verbose`，将会详细输出当前项目每一个文件的编译信息。此参数特别适用于上传时卡死的情况，可以方便的查看问题出在了哪一个文件上
 * 支持上传指定的文件夹，例如：`jdf u js`
 * 支持上传指定的文件，例如：`jdf u js/a.js`
 * 支持简单的通配符，例如：`jdf u js/**/*.js`，将只输出`js`文件夹下所有的js文件
