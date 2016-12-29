@@ -1,9 +1,15 @@
 'use strict';
 
+const path = require('path');
 const expect = require('expect.js');
 const urlReplace = require('../../lib/urlReplace');
 const jdf = require('../../lib/jdf.js');
-const f = require('jdf-utils').file;
+
+const jdfUtils = require('jdf-utils');
+const f = jdfUtils.file;
+const $ = jdfUtils.base;
+
+const VFS = require('../../lib/VFS/VirtualFileSystem');
 
 describe('replace url', function(){
     describe('comboUrlPath()', function(){
@@ -15,25 +21,51 @@ describe('replace url', function(){
         });
     });
 
-    describe('js_cmd_define', function(){
-        var source = '/Users/chenxiaochun/Documents/MyProject/jdf/build/jdf-test/widget/js_cmd_define/js_cmd_define.js';
+    describe('addSourceCdn()', function(){
 
-        it('case01 is ok', function(){
-            var case01 = f.read('test/urlReplace/js_cmd_define/case01.js');
-            var result01 = f.read('test/urlReplace/js_cmd_define/result01.js');
-
+        it('the case “a.js” is ok', function(){
             jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
 
-            expect(urlReplace.addJsDepends(source, case01)).to.equal(result01);
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, 'a.js')).to.equal('http://misc.360buyimg.com/jdf-test/widget/test/a.js');
         });
 
-        it('case02 is ok', function(){
-            var case02 = f.read('test/urlReplace/js_cmd_define/case02.js');
-            var result02 = f.read('test/urlReplace/js_cmd_define/result02.js');
-
+        it('the case “/a.js” is ok', function(){
             jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
 
-            expect(urlReplace.addJsDepends(source, case02)).to.equal(result02);
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, '/a.js')).to.equal('http://misc.360buyimg.com/jdf-test/a.js');
+        });
+
+        it('the case "./a.js" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, './a.js')).to.equal('http://misc.360buyimg.com/jdf-test/widget/test/a.js');
+        });
+
+        it('the case "../a.js" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, '../a.js')).to.equal('http://misc.360buyimg.com/jdf-test/widget/a.js');
+        });
+
+        it('the case "../../a.js" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, '../../a.js')).to.equal('http://misc.360buyimg.com/jdf-test/a.js');
         });
     })
 });
