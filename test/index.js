@@ -23,6 +23,6 @@ require('./config');
 
 require('./buildcss');
 
-// require('./urlReplace');
+require('./urlReplace');
 
 

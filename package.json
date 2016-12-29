@@ -31,6 +31,7 @@
   "preferGlobal": true,
   "readmeFilename": "README.md",
   "dependencies": {
+    "acorn": "^4.0.4",
     "atropa-jslint": "0.1.2",
     "autoprefixer": "^6.5.2",
     "babel-core": "^6.18.0",
@@ -41,6 +42,7 @@
     "commander": "^2.9.0",
     "csslint": "0.10.0",
     "escape-string-regexp": "^1.0.5",
+    "escodegen": "^1.8.1",
     "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
     "html-minifier": "0.6.9",
