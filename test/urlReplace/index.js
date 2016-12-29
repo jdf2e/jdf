@@ -21,6 +21,62 @@ describe('replace url', function(){
         });
     });
 
+    describe('cssImagesUrlReplace()', function(){
+        it('the case "i/a.png" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+        });
+
+        it('the case "/i/a.png" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("/i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
+        });
+
+        it('the case "./i/a.png" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("./i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+        });
+
+        it('the case "../i/a.png" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("../i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/i/a.png)');
+        });
+
+        it('the case "../../i/a.png" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("../../i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
+        });
+
+        it('the case ".test{background-image:url(\"i/a.png\")" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+        });
+    });
+
     describe('addSourceCdn()', function(){
 
         it('the case “a.js” is ok', function(){
