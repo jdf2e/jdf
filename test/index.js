@@ -25,4 +25,6 @@ require('./buildcss');
 
 require('./urlReplace');
 
+require('./buildOutputWidget');
+
 
