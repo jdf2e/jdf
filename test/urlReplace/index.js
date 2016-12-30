@@ -17,7 +17,7 @@ describe('replace url', function(){
             var case01 = f.read('test/urlReplace/comboUrlPath/case01.html');
             var result01 = f.read('test/urlReplace/comboUrlPath/result01.html');
 
-            expect(urlReplace.comboUrlPath(case01)).to.equal(result01);
+            expect(urlReplace.comboUrlPath(case01)).to.equal(result01.replace(/\r/ig, "").replace(/\n{2,}/ig, "\n"));
         });
     });
 
