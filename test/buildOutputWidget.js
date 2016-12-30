@@ -74,4 +74,43 @@ describe('测试widgetOutputName', function () {
 
         });
     });
+
+    describe('分别合并widget的css，js到一个文件', function () {
+        let info = { name: 'output',
+                    text: '{%widgetOutputName="output" %}',
+                    concatTag: { js: true, css: true }
+                };
+        it('delete <script source=widget>', function () {
+            let htmlVfile = {
+                targetContent: `<script type="text/javascript" src="./vfs/files/es6.js" source="widget"></script>
+                    <script type="text/javascript" src="./vfs/files/js.js" source="widget"></script>`
+            }
+            buildOutputWidget.delWidgetTagInHTML(info, htmlVfile);
+            expect(htmlVfile.targetContent.replace(/\W*/g, '')).to.equal('');
+
+            let htmlVfile1 = {
+                targetContent: `<script type="text/javascript" src="./es6.js" ></script>
+                    <script type="text/javascript" src="./vfs/files/es6.js" source="widget"></script>
+                    <script type="text/javascript" src="./vfs/files/js.js" source="widget"></script>`
+            }
+            buildOutputWidget.delWidgetTagInHTML(info, htmlVfile1);
+            expect(htmlVfile1.targetContent).to.contain('./es6.js');
+        });
+        it('delete <link source=widget>', function () {
+            let htmlVfile = {
+                targetContent: `<link href="./vfs/files/css.css" source="widget">
+                    <link href="./vfs/files/css.css" source="widget">`
+            }
+            buildOutputWidget.delWidgetTagInHTML(info, htmlVfile);
+            expect(htmlVfile.targetContent.replace(/\W*/g, '')).to.equal('');
+
+            let htmlVfile1 = {
+                targetContent: `<link href="./css1.css">
+                    <link href="./vfs/files/css.css" source="widget">
+                    <link href="./vfs/files/css.css" source="widget">`
+            }
+            buildOutputWidget.delWidgetTagInHTML(info, htmlVfile1);
+            expect(htmlVfile1.targetContent).to.contain('./css1.css');
+        });
+    });
 });
