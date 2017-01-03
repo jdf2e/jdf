@@ -74,7 +74,7 @@
 
 	* `base64: false` - 是否对图片进行base64编码
 
-	* `excludeFiles: null` - 输出时想要过滤的文件/文件夹，目前只支持正则表达式且不要带前后斜杠
+	* `excludeFiles: []` - 输出时想要过滤的文件/文件夹，以逗号分隔的数组：["test", "build"]
 
 * `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/
 	* `"defaultPresets": ["es2015"]`
