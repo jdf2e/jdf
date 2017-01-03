@@ -1,5 +1,8 @@
 ##changelog
 
+### 3.0.6 / 2017/01/03 16:44:00
+* 当cdn配置为static.360buyimg.com时，require的jdf组件cdn还应该是misc.360buyimg.com 
+
 ### 3.0.3 / 2016/12/28 12:51:00
 * [add]urlReplace.js集成jsAst
 
