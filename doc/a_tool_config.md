@@ -16,7 +16,7 @@
 
 * `"outputDirName": "build"` - 输出文件夹名称
 
-* `"outputCustom": []` - 自定义输出文件夹
+* `"outputCustom": ""` - 自定义输出文件夹，以逗号分隔的字符串
 
 * `"cdn": "//misc.360buyimg.com"` - 静态cdn域名
 
@@ -74,7 +74,7 @@
 
 	* `base64: false` - 是否对图片进行base64编码
 
-	* `excludeFiles: []` - 输出时想要过滤的文件/文件夹，以逗号分隔的数组：["test", "build"]
+	* `excludeFiles: ""` - 输出时想要过滤的文件/文件夹，以逗号分隔的字符串："test", "build"
 
 * `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/
 	* `"defaultPresets": ["es2015"]`
