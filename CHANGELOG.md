@@ -1,5 +1,9 @@
 ##changelog
 
+### 3.0.7 / 2017/01/05 12:48:00
+* [fix] seajs define无require无依赖时添加id
+* [fix] 扩展velocity #parse功能，现在可以正确parse后缀为vm和tpl的velocity文件
+
 ### 3.0.6 / 2017/01/03 16:44:00
 * 当cdn配置为static.360buyimg.com时，require的jdf组件cdn还应该是misc.360buyimg.com 
 
