@@ -1,5 +1,8 @@
 ##changelog
 
+### 3.0.8 / 2017/01/05 17:39:00
+* 扩展velocity #parse，若.vm, .tpl文件是属于某个widget，那么也会将这个widget的js，css文件引用进来
+
 ### 3.0.7 / 2017/01/05 12:48:00
 * [fix] seajs define无require无依赖时添加id
 * [fix] 扩展velocity #parse功能，现在可以正确parse后缀为vm和tpl的velocity文件
