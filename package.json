@@ -49,7 +49,7 @@
     "htmllint": "0.0.7",
     "iconv-lite": "^0.4.10",
     "jdf-css-sprite": "^1.1.2",
-    "jdf-img-minify": "0.0.5",
+    "jdf-img-minify": "0.0.6",
     "jdf-log": "^0.0.4",
     "jdf-upload": "^0.1.4",
     "jdf-utils": "^1.0.8",
