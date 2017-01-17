@@ -72,7 +72,7 @@
 	
 	* `"compressCss":true` - 是否开启压缩css文件
 	
-	* `"compressPng":true` - 是否开启压缩png图片
+	* `"compressImage":true` - 是否开启压缩图片
 
 	* `"cssSprite":true` - 是否开启css sprite功能
 	
