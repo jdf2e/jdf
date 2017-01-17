@@ -1,5 +1,10 @@
 ##changelog
 
+### 3.0.9 / 2017/01/17 15:57:00
+* 升级jdf图片压缩工具集
+* [fix] 在config.json中配置localServerPort，指定端口运行jdf b
+* [add] 实现全局widgetOutputName，并增加说明文档
+
 ### 3.0.8 / 2017/01/05 17:39:00
 * 扩展velocity #parse，若.vm, .tpl文件是属于某个widget，那么也会将这个widget的js，css文件引用进来
 
