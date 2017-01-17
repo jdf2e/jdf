@@ -26,6 +26,14 @@
 
 * `"widgetServerDir": "jdfwidget.jd.com"` - widget服务器所在的文件夹名称
 
+* `"widgetOutputName": "widget"` - 全局widgetOutputName名称
+
+* `"widgetOutputMode": 1` - 编译全局wigetOutputName模式，共三种：1: all widgets|2: white list|3: black list
+    
+* `"widgetWhiteList": []` - 指定白名单，在widgetOutputMode=2时，输出这个列表内容到widget.js/widget.css中
+
+* `"widgetBlackList": []` - 指定黑名单，在widgetOutputMode=3时，排除这个列表的widget
+
 * `"build"`
 	* `"jsPlace": "insertBody"` - 调试时js文件位置 insertHead|insertBody
 	

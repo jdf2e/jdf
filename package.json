@@ -1,7 +1,7 @@
 {
   "name": "jdfx",
   "description": "京东前端自动化构建工具",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "author": {
     "name": "jdfx",
     "email": "chenxiaochun@jd.com"
@@ -49,7 +49,7 @@
     "htmllint": "0.0.7",
     "iconv-lite": "^0.4.10",
     "jdf-css-sprite": "^1.1.2",
-    "jdf-img-minify": "0.0.3",
+    "jdf-img-minify": "0.1.0",
     "jdf-log": "^0.0.4",
     "jdf-upload": "^0.1.4",
     "jdf-utils": "^1.0.8",
