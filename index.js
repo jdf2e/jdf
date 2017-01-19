@@ -84,6 +84,7 @@ function initBuild() {
 		.description('build project')
 		.option('-o, --open', 'auto open html/index.html')
 		.action(mergeOptions((options) => {
+            jdf.checkValidDir();
 			jdf.build(options);
 		}))
 		.on('--help', function () {
@@ -102,6 +103,7 @@ function initOutput() {
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.option('-p, --plain', 'output project by plain')
 		.action(mergeOptions((dir, options) => {
+            jdf.checkValidDir();
 			jdf.output(dir, options);
 		}))
 		.on('--help', function () {
@@ -123,6 +125,7 @@ function initUpload() {
 		.option('-p, --plain', 'output project by plain')
 		.option('-P, --preview', 'upload html dir to preview server dir')
 		.action(mergeOptions((dir, options) => {
+            jdf.checkValidDir();
             const upload = require('jdf-upload');
 			upload(dir, options, jdf);
 		}))
@@ -149,6 +152,7 @@ function initWidget() {
 		.option('-p, --publish <widgetName>', 'publish a widget to server')
         .option('-f, --force', 'force corver when publish or install widget')
 		.action(mergeOptions((options) => {
+            jdf.checkValidDir();
             const widget = require('./lib/widget');
 			options.force = options.force || false;
 			if (options.all) {
