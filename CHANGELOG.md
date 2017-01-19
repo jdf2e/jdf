@@ -1,5 +1,8 @@
 ##changelog
 
+### 3.0.9 / 2017/01/19 10:08:00
+* 修复输出时，cssSprite遇到不存在的文件会抛异常的bug
+
 ### 3.0.9 / 2017/01/17 15:57:00
 * 升级jdf图片压缩工具集
 * [fix] 在config.json中配置localServerPort，指定端口运行jdf b

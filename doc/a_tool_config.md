@@ -34,6 +34,8 @@
 
 * `"widgetBlackList": []` - 指定黑名单，在widgetOutputMode=3时，排除这个列表的widget
 
+* `"localServerPort": 80` - 本地服务器端口
+
 * `"build"`
 	* `"jsPlace": "insertBody"` - 调试时js文件位置 insertHead|insertBody
 	
@@ -70,7 +72,7 @@
 	
 	* `"compressCss":true` - 是否开启压缩css文件
 	
-	* `"compressPng":true` - 是否开启压缩png图片
+	* `"compressImage":true` - 是否开启压缩图片
 
 	* `"cssSprite":true` - 是否开启css sprite功能
 	

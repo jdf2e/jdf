@@ -1,6 +1,6 @@
 {
-	"host": "ftpServerIp",
-	"user": "anonymous",
-	"password": "anonymous",
-	"projectPath": ""
+	"host": "192.168.153.93",
+	"user": "arch",
+	"password": "arch",
+	"projectPath": "jdf_init" //默认输出项目名称
 }
