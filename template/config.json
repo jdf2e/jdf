@@ -2,5 +2,6 @@
 	"host": "192.168.153.93",
 	"user": "arch",
 	"password": "arch",
-	"projectPath": "jdf_init" //默认输出项目名称
+	"projectPath": "jdf_init", //默认输出项目名称
+    "compressThreadCrisis": 200  //工程文件超过200个时开启多线程压缩
 }
