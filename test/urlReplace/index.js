@@ -75,6 +75,15 @@ describe('replace url', function(){
 
             expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
         });
+
+        it('the case "i/iconfont.eot?#iefix" is ok', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.addSourceCdn(source, 'i/iconfont.eot?#iefix')).to.equal('http://misc.360buyimg.com/jdf-test/widget/test/i/iconfont.eot?#iefix');
+        })
     });
 
     describe('addSourceCdn()', function(){
