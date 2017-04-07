@@ -1,6 +1,8 @@
 ##changelog
+
 ### 3.1.0 / 2017/04/07 09:38:00
 * [fix]修改require('a.js')，以字母开头的路径直接添加cdn路径
+* [add]默认添加babel-preset-es2015依赖
 
 ### 3.0.10 / 2017/03/15 16:26:00
 * [bug]修复无法替换带有后缀的css backgorund url
