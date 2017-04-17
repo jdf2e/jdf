@@ -90,7 +90,7 @@ html {
 * 取出所有图片，依靠backgroud-repeat、background-position进行图片合并，并生成合并的新图片
 * 把css文件所有sprite图片路径替换成合并的新图片路径
 
-##解析css
+## 解析css
 * 利用正则实现一个简单的css语法解析器，可把css内容解析为
 
 <table>
@@ -102,6 +102,3 @@ html {
 	<tr><td>width</td> <td>number</td> <td>图片的宽度</td> </tr>
 	<tr><td>height</td> <td>number</td> <td>图片的高度</td> </tr>
 </table>
-
-##系统支持
-win，mac，linux

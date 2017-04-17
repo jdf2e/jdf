@@ -1,6 +1,6 @@
 # css优化策略
 
-##combo策略
+## combo策略
 
 ```
 {%widget name="a"%}

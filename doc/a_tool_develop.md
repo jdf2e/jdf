@@ -1,5 +1,5 @@
-#Getting Started
-##欢迎使用jdf。
+# Getting Started
+## 欢迎使用jdf。
 jdf是一个前端工程框架，通过提供若干命令行，jdf可以创建工程，编译，在线调试，输出压缩代码等。
 ### 安装jdf
 ```
@@ -43,8 +43,8 @@ helloworld/
 
 这样，一个jdf工程的创建就完成了。
 
-###进入开发阶段
-####引用widget到html页面
+### 进入开发阶段
+#### 引用widget到html页面
 * 新建html/myPage.html文件
 * 将myWidget引入myPage.html
 
@@ -60,7 +60,7 @@ helloworld/
 {%widget name="myWidget" type="css, vm" %}
 ```
 
-####编写widget内容
+#### 编写widget内容
 * 在`myWidget.vm`中输入：
 
 ```
@@ -82,7 +82,7 @@ helloworld/
 }
 ```
 
-####启动开发调试模式
+#### 启动开发调试模式
 欢迎进入欢快的开发阶段！
 
 * 运行`jdf build -o`，编译工程并自动打开浏览器，假设打开的网址为:
@@ -154,6 +154,6 @@ jdf upload
 
 这样就上传到测试服务器了，邀请团队的小伙伴来查看你的成果吧。
 
-##结语
+## 结语
 通过上述操作，你已经掌握jdf的主要功能，可以进行完整的工程开发了。jdf还有很多特性，我们也提供了完善的说明文档，欢迎探索。
 

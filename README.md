@@ -11,9 +11,20 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 * [安装nodejs@4.4.5及以上版本](http://nodejs.org/)
 * `npm install jdfx -g`
 * 执行`jdf -V`，测试是否安装成功（注意是大写的`V`）
+
+## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
 * [命令文档](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_command.md)
 * [配置文档](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_config.md)
+* [css优化策略](https://github.com/jdf2e/jdf/blob/master/doc/core_css_optimize.md)
+* [css雪碧图](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_csssprite.md)
+* [smarty模版](https://github.com/jdf2e/jdf/blob/master/doc/core_smarty.md)
+* [tpl模版](https://github.com/jdf2e/jdf/blob/master/doc/core_tpl.md)
+* [vm模版](https://github.com/jdf2e/jdf/blob/master/doc/core_vm.md)
+* [widget说明](https://github.com/jdf2e/jdf/blob/master/doc/core_widget.md)
+* [widgetOutputName标签](https://github.com/jdf2e/jdf/blob/master/doc/core_widgetoutputname.md)
+
+## 使用攻略
 * [文件路径拼写说明](https://github.com/jdf2e/jdf/issues/6)
 * [移动端页面开发](https://github.com/jdf2e/jdf/issues/7)
 
