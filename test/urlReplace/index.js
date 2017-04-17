@@ -115,6 +115,15 @@ describe('replace url', function(){
             expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'require')).to.equal('http://misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
         });
 
+        it('the case “jdf/1.0.0/ui/dialog/1.0.0/dialog.js and loadType is use"', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'use')).to.equal('http://misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
+        });
+
         it('the case “/a.js”', function(){
             jdf.config.projectPath = 'jdf-test';
             jdf.config.cdn = 'http://misc.360buyimg.com'
