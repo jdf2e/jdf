@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/jdf2e/jdf",
   "keywords": [
-    "jdf"
+    "jdf", "jdfx", "build tools", "构建工具", "tool", "cli", "front-end", "fe"
   ],
   "license": "MIT",
   "bin": {
