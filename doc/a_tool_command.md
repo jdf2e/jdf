@@ -1,7 +1,8 @@
 # 命令文档
 
 ## jdf init
-* `jdf init xxx`，在本地初始化一个jdf的标准项目，目录结构如下所示。`xxx`可省略，省略后默认的项目名称为`jdf_init`。
+* `jdf init xxx`，在本地初始化一个jdf的标准项目，目录结构如下所示。`xxx`可省略，省略后默认的项目名称为`jdf_init`
+* `-c`或者`--current`，表示在当前目录初始化jdf工程，不会新建一个新的目录
 
 <pre>
 jdf_init
