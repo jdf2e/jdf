@@ -66,8 +66,9 @@ function initStandardDir() {
 		.command('init [projectName]')
 		.alias('i')
 		.description('create a new jdf project')
+        .option('-c, --current', 'make this directory as a jdf project')
 		.action(mergeOptions((projectName, options) => {
-            jdf.createStandardDir(projectName);
+            jdf.createStandardDir(projectName, options);
 		}))
 		.on('--help', function () {
 			outputHelp([

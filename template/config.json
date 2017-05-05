@@ -2,6 +2,17 @@
 	"host": "192.168.153.93",
 	"user": "arch",
 	"password": "arch",
-	"projectPath": "jdf_init", //默认输出项目名称
-    "compressThreadCrisis": 200  //工程文件超过200个时开启多线程压缩
+	"projectPath": "jdf_init", // 默认输出项目名称
+    "compressThreadCrisis": 200,  // 工程文件超过200个时开启多线程压缩
+    "cdn": "//misc.360buyimg.com", // cdn前缀，如果不需要cdn，置成空字符串
+    "output": {
+        "cssCombo": true, // css进行combo
+        "jsCombo": true, // js进行combo
+
+        "compressJs": true, // 是否开启压缩js文件
+        "compressCss": true, // 是否开启压缩css文件
+        "compressImage": true, // 是否开启压缩图片
+
+        "excludeFiles": "" // 不需要输出的文件/文件夹，路径相对于当前项目根目录，以逗号分隔，例如："test,test.css"
+    }
 }
