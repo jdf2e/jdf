@@ -112,7 +112,7 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
 
-            expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'require')).to.equal('http://misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
+            expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'require')).to.equal('//misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
         });
 
         it('the case “jdf/1.0.0/ui/dialog/1.0.0/dialog.js and loadType is use"', function(){
@@ -121,7 +121,16 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
 
-            expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'use')).to.equal('http://misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
+            expect(urlReplace.addSourceCdn(source, 'jdf/1.0.0/ui/dialog/1.0.0/dialog.js', 'use')).to.equal('//misc.360buyimg.com/jdf/1.0.0/ui/dialog/1.0.0/dialog.js');
+        });
+
+        it('the case “felibs/animate.css/3.5.2/animate.min.css"', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com'
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.js');
+
+            expect(urlReplace.addSourceCdn(source, 'felibs/animate.css/3.5.2/animate.min.css')).to.equal('//misc.360buyimg.com/felibs/animate.css/3.5.2/animate.min.css');
         });
 
         it('the case “/a.js”', function(){
