@@ -1,5 +1,8 @@
 ##changelog
 
+### 3.2.3 / 2017/06/29 17:38:00
+* [bug]修复利用widgetOutputName将widget合并之后，html引用合并的文件路径问题
+
 ### 3.2.1 / 2017/06/12 10:25:00
 * [bug]修复widget合并之后，html引用合并的文件路径问题
 
