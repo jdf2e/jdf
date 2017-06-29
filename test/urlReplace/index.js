@@ -28,7 +28,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("i/a.png")', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
         });
 
         it('the case "/i/a.png"', function(){
@@ -37,7 +39,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("/i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("/i/a.png")', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
         });
 
         it('the case "./i/a.png"', function(){
@@ -46,7 +50,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("./i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("./i/a.png")',function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
         });
 
         it('the case "../i/a.png"', function(){
@@ -55,7 +61,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("../i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("../i/a.png")', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/i/a.png)');
         });
 
         it('the case "../../i/a.png"', function(){
@@ -64,7 +72,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("../../i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("../../i/a.png")', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/i/a.png)');
         });
 
         it('the case ".test{background-image:url(\"i/a.png\")"', function(){
@@ -73,7 +83,9 @@ describe('replace url', function(){
 
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
-            expect(urlReplace.cssImagesUrlReplace(source, '.test{background-image:url("i/a.png")')).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url("i/a.png")', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
         });
 
         it('the case "i/iconfont.eot?#iefix"', function(){
