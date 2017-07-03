@@ -44,7 +44,7 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 * 支持将vm和smarty模版编译为html
 * 支持将sass和less编译为css
 * 支持velocity语法
-* 支持ES6
+* 支持ES6(需要在jdf项目根目录执行`npm install babel-preset-es2015`，es6文件后缀名为`.babel`)
 
 #### 项目输出
 * 自动将页面中的js、css引用转换成combo请求格式
