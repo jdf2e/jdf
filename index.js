@@ -147,6 +147,7 @@ function initWidget() {
 		.alias('w')
 		.description('create/install/preview/publish widgets')
         .option('-c, --create <widgetName>', 'create a widget to local')
+        .option('-s, --smarty', 'create a smarty widget to local when use --create.')
 		.option('-a, --all', 'preview all local widgets')
 		.option('-l, --list', 'get widget list from server')
 		.option('-i, --install <widgetName>', 'install a widget to local')
@@ -160,7 +161,7 @@ function initWidget() {
 				widget.all();
 			}
 
-			if (options.list) {
+            if (options.list) {
 				widget.list();
 			}
 
@@ -173,12 +174,13 @@ function initWidget() {
 			}
 
 			if (options.create) {
-				widget.create(options.create);
+				widget.create(options.create, options.smarty);
 			}
 		}))
 		.on('--help', function () {
 			outputHelp([
                 '$ jdf widget --create widgetName',
+                '$ jdf widget --create widgetName --smarty',
 				'$ jdf widget --all',
 				'$ jdf widget --list',
 				'$ jdf widget --install ui-header --force',
