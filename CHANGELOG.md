@@ -1,5 +1,9 @@
 ##changelog
 
+### 3.2.4 / 2017/07/31 17:08:00
+* [add] 创建widget时，提供创建smarty模板选项，使用方法jdf widget --create widgetName --smarty 或 jdf w -sc widgetName
+* [add] 支持widget多行定义，widget内的属性现在可以分写在多行
+
 ### 3.2.3 / 2017/06/29 17:38:00
 * [bug]修复利用widgetOutputName将widget合并之后，html引用合并的文件路径问题
 
