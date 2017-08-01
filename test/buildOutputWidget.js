@@ -7,17 +7,18 @@ const logger = require('jdf-log');
 
 const VFS = require('../lib/VFS/VirtualFileSystem');
 const buildOutputWidget = require('../lib/buildOutputWidget');
+const widgetParser = require('../lib/buildWidget');
 
 describe('测试widgetOutputName', function () {
     logger.level(-1);
     describe('查找并解析{%widgetOutputName %}标签', function () {
         it('单行注释标签返回{}', function () {
             let comment1 = '<!-- {%widgetOutputName="name1"%} -->';
-            let info = buildOutputWidget.parseOutputName(comment1);
+            let info = widgetParser.parseOutputName(comment1);
             expect(info).to.eql({});
 
             let comment2 = `<!-- {%widgetOutputName="name1"%} {%widgetOutputName="name2"%} -->`;
-            let info2 = buildOutputWidget.parseOutputName(comment2);
+            let info2 = widgetParser.parseOutputName(comment2);
             expect(info2).to.eql({});
         });
         it('多行注释标签返回{}', function () {
@@ -25,19 +26,19 @@ describe('测试widgetOutputName', function () {
                 {%widgetOutputName="name1"%}
                 {%widgetOutputName="name2"%}{%widgetOutputName="name3"%}
                 -->`;
-            let info = buildOutputWidget.parseOutputName(comment1);
+            let info = widgetParser.parseOutputName(comment1);
             expect(info).to.eql({});
 
             let comment2 = `<!--
                 {%widgetOutputName="name1"%}
                 {%widgetOutputName="name2"%}
                 -->`;
-            let info2 = buildOutputWidget.parseOutputName(comment2);
+            let info2 = widgetParser.parseOutputName(comment2);
             expect(info2).to.eql({});
         });
         it('widgetOutputName标签解析', function () {
             let comment = `{%widgetOutputName="name1"%}`;
-            let info2 = buildOutputWidget.parseOutputName(comment);
+            let info2 = widgetParser.parseOutputName(comment);
             expect(info2.name).to.equal('name1');
         });
         it('注释非注释写在一起', function () {
@@ -47,7 +48,7 @@ describe('测试widgetOutputName', function () {
                 <div>ad</div>
                 {%widgetOutputName="name3"%}
             `;
-            let info2 = buildOutputWidget.parseOutputName(comment);
+            let info2 = widgetParser.parseOutputName(comment);
             expect(info2.name).to.equal('name1');
         });
         it('一个html文档', function () {
@@ -69,7 +70,7 @@ describe('测试widgetOutputName', function () {
                     <!-- {%widgetOutputName="output3" %} -->
                     </body>
                     </html>`;
-            let info = buildOutputWidget.parseOutputName(html);
+            let info = widgetParser.parseOutputName(html);
             expect(info.name).to.equal('output');
 
         });
