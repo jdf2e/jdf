@@ -1,5 +1,11 @@
 ##changelog
 
+### 3.2.5 / 2017/07/31 17:08:00
+* [add] 增加钩子，“编译后”
+
+### 3.2.5 / 2017/07/31 17:08:00
+* [add] 增加插件模块，保留了三个钩子，分别是“编译前”，“widget模板渲染前”，“widget模板插入html前”
+
 ### 3.2.4 / 2017/07/31 17:08:00
 * [add] 创建widget时，提供创建smarty模板选项，使用方法jdf widget --create widgetName --smarty 或 jdf w -sc widgetName
 * [add] 支持widget多行定义，widget内的属性现在可以分写在多行
