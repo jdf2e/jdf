@@ -23,6 +23,7 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 * [vm模版](https://github.com/jdf2e/jdf/blob/master/doc/core_vm.md)
 * [widget说明](https://github.com/jdf2e/jdf/blob/master/doc/core_widget.md)
 * [widgetOutputName标签](https://github.com/jdf2e/jdf/blob/master/doc/core_widgetoutputname.md)
+* [插件模块](https://github.com/jdf2e/jdf/blob/master/doc/core_plugin.md)
 
 ## 使用攻略
 * [文件路径拼写说明](https://github.com/jdf2e/jdf/issues/6)
