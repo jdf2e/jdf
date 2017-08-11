@@ -85,7 +85,8 @@ function initBuild() {
 		.description('build project')
 		.option('-o, --open', 'auto open html/index.html')
 		.action(mergeOptions((options) => {
-            jdf.checkValidDir();
+			jdf.checkValidDir();
+			jdf.currentCommand = 'build';
 			jdf.build(options);
 		}))
 		.on('--help', function () {
@@ -104,7 +105,8 @@ function initOutput() {
 		.option('-d, --debug', 'uncompressed js,css,images for test')
 		.option('-p, --plain', 'output project by plain')
 		.action(mergeOptions((dir, options) => {
-            jdf.checkValidDir();
+			jdf.checkValidDir();
+			jdf.currentCommand = 'output';
 			jdf.output(dir, options);
 		}))
 		.on('--help', function () {
@@ -126,7 +128,8 @@ function initUpload() {
 		.option('-p, --plain', 'output project by plain')
 		.option('-P, --preview', 'upload html dir to preview server dir')
 		.action(mergeOptions((dir, options) => {
-            jdf.checkValidDir();
+			jdf.checkValidDir();
+			jdf.currentCommand = 'upload';
             const upload = require('jdf-upload');
 			upload(dir, options, jdf);
 		}))
@@ -227,7 +230,8 @@ function initServer() {
         .option('-w, --watch', 'watch html file change and reload browser automatically.')
 		.description('debug for online/RD debug')
 		.action(mergeOptions((options) => {
-            jdf.server(options);
+			jdf.currentCommand = 'server';
+			jdf.server(options);
 		}))
 		.on('--help', function () {
 			outputHelp([
