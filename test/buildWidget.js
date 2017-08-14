@@ -2,6 +2,7 @@
 
 const expect = require('expect.js');
 const logger = require('jdf-log');
+const escapeStringRegexp = require('escape-string-regexp');
 
 const buildWidget = require('../lib/buildWidget');
 
@@ -48,6 +49,16 @@ describe('测试buildWidget', function () {
 floorname="运营商-菜单"
 name="menu"
 cmsdata='{"floorclass": "floor-201707311537"}'%}`);
+        });
+        it('widget相关文件名的正则检测', function () {
+            let widgetInfo = {
+                name: 'test.a'
+            }
+            let oBasename = 'test.a.a.js';
+            let oBasename1 = 'test.a.js';
+            let widgetNameReg = new RegExp(escapeStringRegexp(widgetInfo.name) + '\.\\w+$');
+            expect(widgetNameReg.test(oBasename)).to.equal(false);
+            expect(widgetNameReg.test(oBasename1)).to.equal(true);
         });
     });
 
