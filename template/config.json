@@ -14,5 +14,6 @@
         "compressImage": true, // 是否开启压缩图片
 
         "excludeFiles": "" // 不需要输出的文件/文件夹，路径相对于当前项目根目录，以逗号分隔，例如："test,test.css"
-    }
+    },
+    "plugins": [] // 引用的插件
 }
