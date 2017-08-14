@@ -34,6 +34,8 @@
 
 * `"widgetBlackList": []` - 指定黑名单，在widgetOutputMode=3时，排除这个列表的widget
 
+* `"widgetNesting": true` - widget嵌套功能开关，默认开启
+
 * `"localServerPort": 80` - 本地服务器端口
 
 * `"build"`
