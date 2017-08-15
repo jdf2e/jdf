@@ -104,12 +104,12 @@ a {
 ## jdf widget
 
 * 可简写为`jdf w`
-* `--create xxx`，创建一个widget
-* `--all`，预览当前项目中的所有widget
-* `--preview xxx`，预览指定的widget
-* `--list`，获取服务器上所有的widget列表
-* `--publish xxx`，发布widgt到服务器上
-* `--install xxx`，安装指定的widget到当前项目
+* `-s` 或者 `--smarty`，创建widget时以smarty模板形式创建
+* `-c xxx`或者`--create xxx`，创建一个widget
+* `-P xxx`或者`--preview [xxx]`，预览指定的widget，当没有指定widget时，预览全部widget
+* `-l xxx`或者`--list`，获取服务器上所有的widget列表
+* `-p xxx`或者`--publish xxx`，发布widgt到服务器上
+* `-i xxx`或者`--install xxx`，安装指定的widget到当前项目
 
 ## jdf lint
 

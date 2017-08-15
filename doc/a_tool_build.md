@@ -54,9 +54,12 @@
 * 在`jdf b -o`运行时，可以通过修改本地文件实时查看M端页面改动；
 * 如果需要微调，则可以使用集成的weinre，如何使用请参见[weinre说明](a_tool_weinre.md)；
 
-## 可能存在问题
-* 在改动文件后，自动刷新的页面白屏
+## 常见问题
+* 终端报acron.js错误
+    - 请检查js有无写错
+    - html中的模板由`<script type="text/tempalte">`写成了`<script type="text/javascript">`
 * 在改动文件后，没有刷新浏览器
+    - 检查scss是否写错，查看终端提示信息
 
-碰到上述问题可以尝试重启`jdf b`。
+碰到上述问题可以尝试`jdf b -v`打印更详细的信息。
 
