@@ -151,7 +151,7 @@ function initWidget() {
 		.description('create/install/preview/publish widgets')
         .option('-c, --create <widgetName>', 'create a widget to local')
         .option('-s, --smarty', 'create a smarty widget to local when use --create.')
-		.option('-a, --all', 'preview all local widgets')
+		.option('-P, --preview [widgetName]', 'preview all widgets or preview some specified widget')
 		.option('-l, --list', 'get widget list from server')
 		.option('-i, --install <widgetName>', 'install a widget to local')
 		.option('-p, --publish <widgetName>', 'publish a widget to server')
@@ -160,8 +160,8 @@ function initWidget() {
             jdf.checkValidDir();
             const widget = require('./lib/widget');
 			options.force = options.force || false;
-			if (options.all) {
-				widget.all();
+			if (options.preview) {
+				widget.preview(options.preview);
 			}
 
             if (options.list) {
@@ -184,7 +184,7 @@ function initWidget() {
 			outputHelp([
                 '$ jdf widget --create widgetName',
                 '$ jdf widget --create widgetName --smarty',
-				'$ jdf widget --all',
+				'$ jdf widget --preview widgetName1,widgetName2',
 				'$ jdf widget --list',
 				'$ jdf widget --install ui-header --force',
 				'$ jdf widget --publish myWidget',
