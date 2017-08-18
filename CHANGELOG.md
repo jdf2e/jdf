@@ -1,7 +1,9 @@
 ##changelog
 
-### 3.2.9 / 2017/08/14 17:58:00
+### 3.2.9 / 2017/08/18 18:48:00
 * [add] 重磅！新增widget嵌套功能，widget组合更灵活
+* [add] 增加widget preview功能
+* [fix] 识别data里json数据，现在data可以支持任意合法的json串
 
 ### 3.2.7 / 2017/08/11 17:46:00
 * [fix] 插件系统调用jdf工程下的node_modules
