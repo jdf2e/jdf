@@ -54,9 +54,9 @@ widget的数据文件，直接书写`json`数据结构，在`vm`模版中使用�
 
 ## 相关命令
 
-* `widget -preview [xxx]` - 预览所有项目中所有widget或部分widget
-* `widget -install xxx` - 安装一个widget模块到当前工程
-* `widget -publish xxx` - 发布一个widget模块到服务端
-* `widget -create xxx` - 在本地项目新建一个widget,会生成widget文件夹和vm,css,js,json文件
-* `widget -list` - 取得服务端所有widget列表
+* `widget --preview [xxx]` - 预览所有项目中所有widget或部分widget
+* `widget --install xxx` - 安装一个widget模块到当前工程
+* `widget --publish xxx` - 发布一个widget模块到服务端
+* `widget --create xxx` - 在本地项目新建一个widget,会生成widget文件夹和vm,css,js,json文件
+* `widget --list` - 取得服务端所有widget列表
 
