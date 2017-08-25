@@ -1,5 +1,8 @@
 ##changelog
 
+### 3.2.10 / 2017/08/25 19:37:00
+* [change] jdf u默认将不上传html，jdf u -P维持原样
+
 ### 3.2.9 / 2017/08/18 18:48:00 【Beta】
 * [add] 重磅！新增widget嵌套功能，widget组合更灵活
 * [add] 增加widget preview功能
