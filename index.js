@@ -131,14 +131,16 @@ function initUpload() {
 			jdf.checkValidDir();
 			jdf.currentCommand = 'upload';
             const upload = require('jdf-upload');
+
+			if(!options.preview){
+				options.static = true;
+			}
 			upload(dir, options, jdf);
 		}))
 		.on('--help', function () {
 			outputHelp([
 				'$ jdf upload',
 				'$ jdf upload srcPath',
-				'$ jdf upload --nc',
-				'$ jdf upload --nh',
 				'$ jdf upload --debug --preview srcPath'
 			]);
 		});
