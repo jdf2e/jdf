@@ -90,7 +90,7 @@
 
 	* `"webp":false` - 是否生成对应的webp图片
 
-	* `"excludeFiles": ""` - 输出时想要过滤的文件/文件夹，以逗号分隔的字符串："test,build"
+	* `"excludeFiles": ""` - 想要直接忽略的文件/文件夹，以逗号分隔的字符串："test,build"
 
 * `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/
 	* `"presets": []`
