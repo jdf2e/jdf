@@ -9,8 +9,14 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 ## 安装使用
 
 * [安装nodejs@4.4.5及以上版本](http://nodejs.org/)
-* `npm install jdfx -g`
+```
+$ npm install jdfx -g
+```
 * 执行`jdf -V`，测试是否安装成功（注意是大写的`V`）
+
+## 更新日志
+
+* [changelog](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
@@ -92,6 +98,3 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 ## 编译器插件
 * [Sublime Text2 插件](https://sublime.wbond.net/packages/Jdf%20-%20Tool)
 
-## 更新日志
-
-* [changelog](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
