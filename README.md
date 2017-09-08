@@ -16,7 +16,10 @@ $ npm install jdfx -g
 
 ## 更新日志
 
-* [changelog](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
+[完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
+
+### 3.2.16 / 2017/09/08 16:45:00
+* [fix] 现在编译.babel后缀文件不需要在工程中安装babel-preset-es2015了，如果在config.json里主动声明，那还是需要在工程中安装。
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)

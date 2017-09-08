@@ -1,7 +1,7 @@
-##changelog
+## changelog
 
 ### 3.2.16 / 2017/09/08 16:45:00
-* [fix] 现在编译babel文件不需要在工程中安装babel-preset-es2015了，如果在config.json里主动声明，那还是需要在工程中安装。
+* [fix] 现在编译.babel后缀文件不需要在工程中安装babel-preset-es2015了，如果在config.json里主动声明，那还是需要在工程中安装。
 
 ### 3.2.11 / 2017/08/29 17:24:00
 * [fix] 【紧急】修复在不存在vm的情况下，导致页面不编译的bug
