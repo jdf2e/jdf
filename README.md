@@ -8,7 +8,7 @@ JDFX是京东前端团队自主研发的一款自动化构建工具，目的是�
 
 ## 安装使用
 
-* [安装nodejs@4.4.5及以上版本](http://nodejs.org/)
+* [nodejs@4.4.5到最新LTS版本可用](http://nodejs.org/)
 ```
 $ npm install jdfx -g
 ```
