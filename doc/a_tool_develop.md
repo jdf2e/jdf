@@ -7,6 +7,9 @@ npm install -g jdfx
 ```
 安装完成后运行`jdf -h`，查看jdf所有命令。
 
+#### 注意
+实际安装中，windows可能遇到第一次安装时，node-sass依赖安装不成功的问题，这个时候卸载jdfx，`npm remove -g jdfx`, 然后再重装`npm install -g jdfx`就ok了，再次安装的速度会比第一次安装快很多。
+
 ### 新建工程
 * 使用`jdf init xxx`来创建一个符合jdf规范目录的工程，比如创建一个名为helloworld的工程：
 
