@@ -18,8 +18,11 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.2.16 / 2017/09/08 16:45:00
-* [fix] 现在编译.babel后缀文件不需要在工程中安装babel-preset-es2015了，如果在config.json里主动声明，那还是需要在工程中安装。
+### 3.2.18 / 2017/09/22 18:19:00
+* [fix] 修复jdf o -d/-p时参数失效的bug
+* [bug]修复执行jdf u命令时，无法上传合并的widget css文件的问题
+* [bug]修复某些情况下安装jdf时会抛异常的问题
+* [opti] js解析报错时，提供明显的定位，并强制退出。取消以前版本在verbose模式下打印js错误。
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
