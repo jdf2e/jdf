@@ -1,5 +1,5 @@
 ## changelog
-### 3.2.20 / 2017/09/30 18:16:00
+### 3.3.0 / 2017/09/30 18:16:00
 * [change] cdn替换逻辑梳理明确，增加config.output.linkReplace参数。在此之前config.output.jsUrlReplace参数承担了三个工作：js文件内cdn替换，script标签cdn替换，link标签cdn替换，考虑到js的相互依赖，js文件内cdn替换和script标签cdn替换依旧共用jsUrlReplace，独立出linkReplace参数，作为link标签替换cdn的选项。
 * [fix] 优化在没有widget文件夹时，`jdf b/o`时命令行的提示，避免引起误解。
 

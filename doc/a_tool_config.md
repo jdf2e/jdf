@@ -60,7 +60,7 @@
 * `"output"`
 	* `"cssImagesUrlReplace": true` - css中图片url加cdn替换
 
-	* `"linkReplace": true` - 给link.href添加cdn前缀，v3.2.20版本新增，之前由`jsUrlReplace`参数控制link.href添加cdn
+	* `"linkReplace": true` - 给link.href添加cdn前缀，v3.3.0版本新增，之前由`jsUrlReplace`参数控制link.href添加cdn
 
 	* `"jsUrlReplace": false` - js文件的id和dependences是否添加cdn前缀
 	
