@@ -2,6 +2,7 @@
 
 ### 3.3.1 / 2017/10/11 14:49:00
 * [bug]修复上传初始化的项目中没有任何文件时，会报错的问题
+* [bug]修复使用`jdf u -P`命令时，html引用资源路径不会combo的问题
 
 ### 3.3.0 / 2017/09/30 18:16:00
 * [change] cdn替换逻辑梳理明确，增加config.output.linkReplace参数。在此之前config.output.jsUrlReplace参数承担了三个工作：js文件内cdn替换，script标签cdn替换，link标签cdn替换，考虑到js的相互依赖，js文件内cdn替换和script标签cdn替换依旧共用jsUrlReplace，独立出linkReplace参数，作为link标签替换cdn的选项。
