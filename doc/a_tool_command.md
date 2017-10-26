@@ -15,6 +15,9 @@ jdf_init
 ├── widget           //页面中用到的所有widget
 </pre>
 
+## jdf install
+* `jdf install xxx`，将指定的jdf ui组件下载安装到当前项目的`components`文件夹里。并且会在`config.json`中添加一条此组件的版本信息。
+
 ## jdf build
 执行此命令jdf会开启一个[本地服务](a_tool_build.md)用来构建项目，一般是用在项目的开发阶段。默认端口为`8080`，如果已被占用，系统会自动开启一个新的端口
 
