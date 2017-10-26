@@ -18,10 +18,8 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.3.1 / 2017/10/11 14:49:00
-* [bug]修复上传初始化的项目中没有任何文件时，会报错的问题
-* [bug]修复使用`jdf u -P`命令时，html引用的资源路径不会被combo的问题
-* [add]支持压缩es6语法
+### 3.3.2 / 2017/10/26 10:16:00
+* [add]添加`jdf install`命令，可将jdf ui组件安装到本地项目中
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)

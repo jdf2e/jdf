@@ -41,6 +41,7 @@ function initCommandWithArgs(argv) {
 
 	// 所有命令入口初始化
 	initStandardDir();
+	initInstall();
 	initBuild();
     initServer();
 	initOutput();
@@ -64,7 +65,6 @@ function initCommandWithArgs(argv) {
 function initStandardDir() {
 	program
 		.command('init [projectName]')
-		.alias('i')
 		.description('create a new jdf project')
         .option('-c, --current', 'make this directory as a jdf project')
 		.action(mergeOptions((projectName, options) => {
@@ -74,6 +74,22 @@ function initStandardDir() {
 			outputHelp([
                 '$ jdf init',
 				'$ jdf init [projectName]'
+			]);
+		});
+}
+
+function initInstall(){
+	program
+		.command('install [componentName]')
+		.description('download jdf component to local')
+		.alias('i')
+		.action(mergeOptions((componentName, options) => {
+			jdf.install(componentName, options);
+		}))
+		.on('--help', function(){
+			outputHelp([
+				'$jdf install',
+				'$jdf install [componentName]'
 			]);
 		});
 }
