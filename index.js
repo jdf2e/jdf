@@ -81,15 +81,17 @@ function initStandardDir() {
 function initInstall(){
 	program
 		.command('install [componentName]')
-		.description('download jdf component to local')
 		.alias('i')
+		.description('download jdf component to local')
+		.option('-l, --list', 'list all components')
 		.action(mergeOptions((componentName, options) => {
 			jdf.install(componentName, options);
 		}))
 		.on('--help', function(){
 			outputHelp([
 				'$jdf install',
-				'$jdf install [componentName]'
+				'$jdf install [componentName]',
+				'$jdf install --list'
 			]);
 		});
 }
