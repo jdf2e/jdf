@@ -4,11 +4,42 @@ const path = require('path');
 const program = require('commander');
 const jdf = require('./lib/jdf');
 const logger = require('jdf-log');
+const upload = require('jdf-upload');
 
 module.exports = {
 	init: function (argv) {
 		jdf.init();
 		initCommandWithArgs(argv);
+	},
+	server: function(options = {}, callback){
+		jdf.init();
+		if(typeof(options) == 'function'){
+			callback = options;
+			options = {};
+		}
+		jdf.server(options, callback);
+	},
+	build: function(options = {}, callback){
+		jdf.init();
+		if(typeof(options) == 'function'){
+			callback = options;
+			options = {};
+		}
+		jdf.build(options, callback);
+	},
+	output: function(dir = [], options = {}){
+		jdf.init();
+		jdf.output(dir, options);
+	},
+	upload: function(dir = [], options = {}){
+		jdf.init();
+		upload(dir, options, jdf);
+	},
+	clean: function(){
+		jdf.clean();
+	},
+	exit: function(){
+		jdf.exit();
 	}
 };
 
@@ -148,7 +179,6 @@ function initUpload() {
 		.action(mergeOptions((dir, options) => {
 			jdf.checkValidDir();
 			jdf.currentCommand = 'upload';
-            const upload = require('jdf-upload');
 
 			if(!options.preview){
 				options.static = true;

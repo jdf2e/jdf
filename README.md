@@ -18,14 +18,16 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.3.2 / 2017/10/26 10:16:00
+### 3.4.0 / 2017/11/02 13:58:00
 * [add]添加`jdf install`命令，可将jdf ui组件安装到本地项目中
 * [add]给`jdf install`命令添加`--list`参数，用来显示所有的组件列表
+* [add]可以使用api调用jdf的命令
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
 * [命令文档](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_command.md)
 * [配置文档](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_config.md)
+* [api调用文档](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_api.md)
 * [css优化策略](https://github.com/jdf2e/jdf/blob/master/doc/core_css_optimize.md)
 * [css雪碧图](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_csssprite.md)
 * [smarty模版](https://github.com/jdf2e/jdf/blob/master/doc/core_smarty.md)
