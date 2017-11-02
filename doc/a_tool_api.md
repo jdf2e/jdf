@@ -16,6 +16,21 @@ jdfx.build(port => {
 
 ## 方法说明
 
+### jdf.setConfig([options])
+
+设置jdf的全局运行参数
+
+```javascript
+const jdfx = require('jdfx');
+
+jdfx.setConfig({
+    projectPath: '/Users/chenxiaochun/Documents/MyProject/jdf-test'
+})
+```
+
+* `options`，全局参数设置
+    * `projectPath`，指定项目运行的绝对路径，默认为当前目录 
+
 ### jdf.server([options, callback])
 
 ```javascript

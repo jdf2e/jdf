@@ -11,8 +11,10 @@ module.exports = {
 		jdf.init();
 		initCommandWithArgs(argv);
 	},
+	setConfig: jdf.setConfig,
 	server: function(options = {}, callback){
 		jdf.init();
+		jdf.checkValidDir();
 		if(typeof(options) == 'function'){
 			callback = options;
 			options = {};
@@ -21,6 +23,7 @@ module.exports = {
 	},
 	build: function(options = {}, callback){
 		jdf.init();
+		jdf.checkValidDir();
 		if(typeof(options) == 'function'){
 			callback = options;
 			options = {};
@@ -29,10 +32,12 @@ module.exports = {
 	},
 	output: function(dir = [], options = {}){
 		jdf.init();
+		jdf.checkValidDir();
 		jdf.output(dir, options);
 	},
 	upload: function(dir = [], options = {}){
 		jdf.init();
+		jdf.checkValidDir();
 		upload(dir, options, jdf);
 	},
 	clean: function(){
