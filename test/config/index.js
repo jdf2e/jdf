@@ -21,6 +21,7 @@ describe('读取配置文件', function () {
     describe('jdf.mergeConfig()', function () {
         let env = path.join(npmRoot, 'test/config');
         process.chdir(env);
+        jdf.init();
         let mergeConfig = jdf.mergeConfig();
         it('projectPath should be test/1.0.1', function () {
             expect(mergeConfig.projectPath).to.equal('test/1.0.1');
