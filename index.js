@@ -12,7 +12,10 @@ module.exports = {
 		initCommandWithArgs(argv);
 	},
 	setConfig: jdf.setConfig,
-	server: function(options = {}, callback){
+	server: function(options, callback){
+		if(!options){
+			options = {};
+		}
 		jdf.init();
 		jdf.checkValidDir();
 		if(typeof(options) == 'function'){
@@ -21,7 +24,10 @@ module.exports = {
 		}
 		jdf.server(options, callback);
 	},
-	build: function(options = {}, callback){
+	build: function(options, callback){
+		if(!options){
+			options = {};
+		}
 		jdf.init();
 		jdf.checkValidDir();
 		if(typeof(options) == 'function'){
@@ -30,12 +36,24 @@ module.exports = {
 		}
 		jdf.build(options, callback);
 	},
-	output: function(dir = [], options = {}){
+	output: function(dir, options){
+		if(!dir){
+			dir = [];
+		}
+		if(!options){
+			options = {};
+		}
 		jdf.init();
 		jdf.checkValidDir();
 		jdf.output(dir, options);
 	},
-	upload: function(dir = [], options = {}){
+	upload: function(dir, options){
+		if(!dir){
+			dir = [];
+		}
+		if(!options){
+			options = {};
+		}
 		jdf.init();
 		jdf.checkValidDir();
 		upload(dir, options, jdf);
