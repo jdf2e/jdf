@@ -226,13 +226,12 @@ function initWidget() {
         .option('-s, --smarty', 'create a smarty widget to local when use --create.')
 		.option('-P, --preview [widgetName]', 'preview all widgets or preview some specified widget')
 		.option('-l, --list', 'get widget list from server')
-		.option('-i, --install <widgetName>', 'install a widget to local')
+		.option('-i, --install <widgetID>', 'install a widget to local')
 		.option('-p, --publish <widgetName>', 'publish a widget to server')
         .option('-f, --force', 'force corver when publish or install widget')
 		.action(mergeOptions((options) => {
             jdf.checkValidDir();
             const widget = require('./lib/widget');
-			options.force = options.force || false;
 			if (options.preview) {
 				widget.preview(options.preview);
 			}
@@ -242,7 +241,7 @@ function initWidget() {
 			}
 
 			if (options.install) {
-				widget.install(options.install, options.force);
+				widget.install(options.install);
 			}
 
 			if (options.publish) {
