@@ -1,6 +1,6 @@
 ## changelog
 
-### 3.4.4  / 2017/12/20 17:15:00
+### 3.4.5  / 2017/12/20 17:15:00
 * [opti] 更改node-sass的dependency为`latest`,保证从node-sass最新版本中下载对应node版本的binding文件，避免本地编译(本地编译需额外安装Python,麻烦)
 * [fix] 修复jdf b时，如果seajs调用了`seajs-combo`插件而请求combo文件时，define没有提供id的bug。现在jdf b强制取消seajs对js的combo，jdf o/u等命令不受影响。
 * [opti] 提供更友好的js错误提示，现在js错误能出到具体文件。
