@@ -1,5 +1,10 @@
 ## changelog
 
+### 3.4.6  / 2017/12/27 14:39:00
+* [fix] 修复压缩时某些配置项失效的bug，比如hasBanner取消时间戳配置。
+* [fix] 修复指定目录或文件输出时，widget没有进行编译的bug。
+* [opti] 优化`jdf b` rebuild的编译逻辑，减少不必要的编译过程，提高编译速度。具体为：增删改js,css只会编译同一类文件，增删改图片不编译，修改vm或html只编译widget不编译js,css
+
 ### 3.4.5  / 2017/12/20 17:15:00
 * [opti] 更改node-sass的dependency为`latest`,保证从node-sass最新版本中下载对应node版本的binding文件，避免本地编译(本地编译需额外安装Python,麻烦)
 * [fix] 修复jdf b时，如果seajs调用了`seajs-combo`插件而请求combo文件时，define没有提供id的bug。现在jdf b强制取消seajs对js的combo，jdf o/u等命令不受影响。
