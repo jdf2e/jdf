@@ -18,10 +18,9 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.4.6  / 2017/12/27 14:39:00
-* [fix] 修复压缩时某些配置项失效的bug，比如hasBanner取消时间戳配置。
-* [fix] 修复指定目录或文件输出时，widget没有进行编译的bug。
-* [opti] 优化`jdf b` rebuild的编译逻辑，减少不必要的编译过程，提高编译速度。具体为：增删改js,css只会编译同类文件，增删改图片不编译，修改vm或html只编译widget不编译js,css。
+### 3.4.7  / 2018/01/04 14:10:00
+* [fix] 修复widgetOutputName在rebuild时没有监听到js css改动的bug
+* [fix] 固定browser-sync版本，由于browser-sync在2.23.2版本中，对express的中间件行为有破坏性改动，因此固定bs版本为2.21.0
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)

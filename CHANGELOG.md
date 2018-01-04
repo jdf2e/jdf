@@ -1,5 +1,9 @@
 ## changelog
 
+### 3.4.7  / 2018/01/04 14:10:00
+* [fix] 修复widgetOutputName在rebuild时没有监听到js css改动的bug
+* [fix] 固定browser-sync版本，由于browser-sync在2.23.2版本中，对express的中间件行为有破坏性改动，因此固定bs版本为2.21.0
+
 ### 3.4.6  / 2017/12/27 14:39:00
 * [fix] 修复压缩时某些配置项失效的bug，比如hasBanner取消时间戳配置。
 * [fix] 修复指定目录或文件输出时，widget没有进行编译的bug。
