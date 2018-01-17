@@ -18,9 +18,9 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.4.7  / 2018/01/04 14:10:00
-* [fix] 修复widgetOutputName在rebuild时没有监听到js css改动的bug
-* [fix] 固定browser-sync版本，由于browser-sync在2.23.2版本中，对express的中间件行为有破坏性改动，因此固定bs版本为2.21.0
+### 3.4.8  / 2018/01/17 18:40:00
+* [fix] 修复github提示的安全风险
+* [add] 支持{}对象为seajs的factory，比如`define('id', [], {})`
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
