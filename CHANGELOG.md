@@ -1,5 +1,23 @@
 ## changelog
 
+### 3.4.8  / 2018/01/17 18:40:00
+* [fix] 修复github提示的安全风险
+* [add] 支持{}对象为seajs的factory，比如`define('id', [], {})`
+
+### 3.4.7  / 2018/01/04 14:10:00
+* [fix] 修复widgetOutputName在rebuild时没有监听到js css改动的bug
+* [fix] 固定browser-sync版本，由于browser-sync在2.23.2版本中，对express的中间件行为有破坏性改动，因此固定bs版本为2.21.0
+
+### 3.4.6  / 2017/12/27 14:39:00
+* [fix] 修复压缩时某些配置项失效的bug，比如hasBanner取消时间戳配置。
+* [fix] 修复指定目录或文件输出时，widget没有进行编译的bug。
+* [opti] 优化`jdf b` rebuild的编译逻辑，减少不必要的编译过程，提高编译速度。具体为：增删改js,css只会编译同一类文件，增删改图片不编译，修改vm或html只编译widget不编译js,css
+
+### 3.4.5  / 2017/12/20 17:15:00
+* [opti] 更改node-sass的dependency为`latest`,保证从node-sass最新版本中下载对应node版本的binding文件，避免本地编译(本地编译需额外安装Python,麻烦)
+* [fix] 修复jdf b时，如果seajs调用了`seajs-combo`插件而请求combo文件时，define没有提供id的bug。现在jdf b强制取消seajs对js的combo，jdf o/u等命令不受影响。
+* [opti] 提供更友好的js错误提示，现在js错误能出到具体文件。
+
 ### 3.4.3 / 2017/11/08 17:19:00
 * [fix]修复安装时，不支持nodejs@4.0版本的问题
 

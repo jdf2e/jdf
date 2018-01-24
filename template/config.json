@@ -1,5 +1,5 @@
 {
-	"host": "192.168.153.93",
+	"host": "192.168.181.73",
 	"user": "arch",
 	"password": "arch",
 	"projectPath": "jdf_init", // 默认输出项目名称

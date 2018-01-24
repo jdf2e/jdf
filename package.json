@@ -1,7 +1,7 @@
 {
   "name": "jdfx",
   "description": "京东前端自动化构建工具",
-  "version": "3.4.3",
+  "version": "3.4.8",
   "author": {
     "name": "jdfx",
     "email": "chenxiaochun@jd.com"
@@ -44,7 +44,7 @@
     "axios": "^0.17.0",
     "babel-core": "^6.18.0",
     "babel-preset-es2015": "^6.24.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "2.21.0",
     "bs-html-injector": "^3.0.3",
     "cheerio": "^0.22.0",
     "clean-css": "2.1.8",
@@ -67,16 +67,15 @@
     "less": "^2.7.1",
     "lodash": "^4.17.2",
     "minimatch": "^3.0.3",
-    "node-sass": "^3.13.0",
+    "node-sass": "latest",
     "node-watch": "^0.5.3",
     "postcss": "^5.2.5",
     "shelljs": "^0.7.5",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
     "strip-json-comments": "^2.0.1",
-    "tar": "0.1.19",
     "uglify-es": "^3.1.3",
-    "uglify-js": "2.4.12",
+    "uglify-js": "2.6.0",
     "uuid": "^3.0.0",
     "velocityjs": "0.4.3"
   },
