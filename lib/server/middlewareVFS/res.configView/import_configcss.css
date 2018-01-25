@@ -66,8 +66,8 @@ h1{
     top: -210px;
     right: 10px;
     width: 200px;
-    height: 80px;
-    line-height: 80px;
+    padding: 20px 20px;
+    line-height: 26px;
     background: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,.5);
     text-align: center;
