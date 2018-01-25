@@ -34,6 +34,7 @@ h1{
     padding: 1em 0;
 }
 .wrap{
+    position: relative;
     padding-bottom: 20px;
     width: 800px;
     margin: 0 auto;
@@ -79,4 +80,14 @@ h1{
 .msg-tip-fail{
     top: 10px;
     border-top: 5px solid red;
+}
+
+.save {
+    position: fixed;
+    left: 50%;
+    margin-left: 430px;
+    bottom: 30px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
 }

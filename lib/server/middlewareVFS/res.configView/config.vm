@@ -72,6 +72,8 @@
     <config-group :group="compress"></config-group>
     <h3>输出配置(output.)之优化</h3>
     <config-group :group="optimization"></config-group>
+
+    <button v-if="changedPropList.length > 0" class="save" @click="save">保存</button>
 </div>
 <div class="msg-tip"></div>
 <script>
@@ -80,38 +82,6 @@
 </script>
 <script>
     ${js}
-</script>
-<script>
-var wrap = document.querySelector('.wrap');
-var msgTip = document.querySelector('.msg-tip');
-wrap.addEventListener('change', function(event){
-    var target = event.target;
-    var name = target.name;
-    var value  = target.value;
-    $.ajax({
-        url: '/saveJdfConfig',
-        type: 'get',
-        data: {
-            [name]: value
-        },
-        success: function(data){
-            if(data.success){
-                msgTip.innerHTML = '保存配置成功！';
-                msgTip.classList.add('msg-tip-success');
-                setTimeout(() => {
-                    msgTip.classList.remove('msg-tip-success');
-                }, 2000);
-            }
-        },
-        error: function(){
-            msgTip.innerHTML = '保存配置失败！';
-            msgTip.classList.add('msg-tip-fail');
-            setTimeout(() => {
-                msgTip.classList.remove('msg-tip-fail');
-            }, 2000);
-        }
-    })
-});
 </script>
 </body>
 </html>
