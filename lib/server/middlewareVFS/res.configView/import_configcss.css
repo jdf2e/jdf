@@ -1,0 +1,82 @@
+html *{
+    font-size: 14px;
+    font-family: "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+    color: #333;
+}
+html, body{
+    background: #26344e;
+    margin: 0;   
+}
+input, textarea, select{
+    width: 550px;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    color: #666;
+}
+input:focus, textarea:focus, select:focus{
+    outline: 0 none;
+}
+.changed {
+    border: 1px solid rgb(85, 94, 223);
+}
+select{
+    width: 573px;
+    height: 33px;
+}
+textarea{
+    height: 70px;
+}
+h1{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0;
+    background: #eee;
+    padding: 1em 0;
+}
+.wrap{
+    padding-bottom: 20px;
+    width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 50px rgba(0,0,0,.5);
+}
+.wrap h3{
+    background: #eee;
+    padding: 10px;
+}
+.wrap .row{
+    margin: 0 0 15px 1em;
+}
+.wrap .row label{
+    display: inline-block;
+    width: 180px;
+    text-align: right;
+    vertical-align: middle;
+}
+.wrap .row label span{
+    text-align: center;
+}
+.wrap .row span{
+    display: inline-block;
+    vertical-align: middle;
+}
+.msg-tip{
+    position: fixed;
+    top: -210px;
+    right: 10px;
+    width: 200px;
+    height: 80px;
+    line-height: 80px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    text-align: center;
+    transition: top .5s ease-out;
+}
+.msg-tip-success{
+    top: 10px;
+    border-top: 5px solid green;
+}
+.msg-tip-fail{
+    top: 10px;
+    border-top: 5px solid red;
+}

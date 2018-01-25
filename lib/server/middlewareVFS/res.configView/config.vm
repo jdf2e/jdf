@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="keywords" content=""/>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <title>工程配置</title>
+        <script src="http://misc.360buyimg.com/jdf/lib/jquery-1.6.4.js"></script>
+        <script src="//misc.360buyimg.com/felibs/vue/2.2.1/vue.min.js"></script>
+        <link href="https://cdn.bootcss.com/balloon-css/0.5.0/balloon.min.css" rel="stylesheet">
+        <link rel="icon" href="//jdf.jd.com/favicon.ico" mce_href="//jdf.jd.com/favicon.ico" type="image/x-icon">
+        <style>
+            ${css}
+        </style>
+    </head>
+    <body>
+<script type="text/template" id="textconfig">
+    <div class="row">
+        <label><span :data-balloon="propObj.tips" :data-balloon-pos="direction">{{ propObj.name }}：</span></label>
+        <span><input :class="{changed: propObj.changed}" :name="propObj.name" v-model="propObj.value"></span>
+    </div>
+</script>
+<script type="text/template" id="numberconfig">
+    <div class="row">
+        <label><span :data-balloon="propObj.tips" :data-balloon-pos="direction">{{ propObj.name }}：</span></label>
+        <span><input :class="{changed: propObj.changed}" :name="propObj.name" v-model="propObj.value" type="number"></span>
+    </div>
+</script>
+<script type="text/template" id="boolselectconfig">
+    <div class="row">
+        <label><span :data-balloon="propObj.tips" :data-balloon-pos="direction">{{ propObj.name }}：</span></label>
+        <span><select :class="{changed: propObj.changed}" :name="propObj.name" v-model="propObj.value">
+            <option :value="true">true</option>
+            <option :value="false">false</option>
+        </select></span>
+    </div>
+</script>
+<script type="text/template" id="selectconfig">
+    <div class="row">
+        <label><span :data-balloon="propObj.tips" :data-balloon-pos="direction">{{ propObj.name }}：</span></label>
+        <span><select :class="{changed: propObj.changed}" :name="propObj.name" v-model="propObj.value">
+            <option 
+                v-for="option in propObj.options"
+                :value="option.value">{{ option.label }}</option>
+        </select></span>
+    </div>
+</script>
+<script type="text/template" id="groupconfig">
+    <div>
+    <template v-for="item in group">
+        <config-text v-if="item.type=='text'" :prop-obj="item"></config-text>
+        <config-number v-else-if="item.type=='number'" :prop-obj="item"></config-number>
+        <config-bool v-else-if="item.type=='bool'" :prop-obj="item"></config-bool>
+        <config-select v-else-if="item.type=='select'" :prop-obj="item"></config-select>
+    </template>
+</div>
+</script>
+
+<div class="wrap" id="app">
+    <h1>jdfx工程配置</h1>
+    
+    <h3>服务器配置</h3>
+    <config-group :group="server"></config-group>
+    <h3>调试配置</h3>
+    <config-group :group="dev"></config-group>
+    <h3>输出配置(output.)之cdn替换</h3>
+    <config-group :group="urlreplace"></config-group>
+    <h3>输出配置(output.)之combo</h3>
+    <config-group :group="combo"></config-group>
+    <h3>输出配置(output.)之压缩</h3>
+    <config-group :group="compress"></config-group>
+    <h3>输出配置(output.)之优化</h3>
+    <config-group :group="optimization"></config-group>
+</div>
+<div class="msg-tip"></div>
+<script>
+    var defaultConfig = ${defaultConfig};
+    var userConfig = ${userConfig};
+</script>
+<script>
+    ${js}
+</script>
+<script>
+var wrap = document.querySelector('.wrap');
+var msgTip = document.querySelector('.msg-tip');
+wrap.addEventListener('change', function(event){
+    var target = event.target;
+    var name = target.name;
+    var value  = target.value;
+    $.ajax({
+        url: '/saveJdfConfig',
+        type: 'get',
+        data: {
+            [name]: value
+        },
+        success: function(data){
+            if(data.success){
+                msgTip.innerHTML = '保存配置成功！';
+                msgTip.classList.add('msg-tip-success');
+                setTimeout(() => {
+                    msgTip.classList.remove('msg-tip-success');
+                }, 2000);
+            }
+        },
+        error: function(){
+            msgTip.innerHTML = '保存配置失败！';
+            msgTip.classList.add('msg-tip-fail');
+            setTimeout(() => {
+                msgTip.classList.remove('msg-tip-fail');
+            }, 2000);
+        }
+    })
+});
+</script>
+</body>
+</html>
