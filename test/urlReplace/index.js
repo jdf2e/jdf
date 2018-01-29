@@ -87,6 +87,25 @@ describe('replace url', function(){
                 return urlReplace.addSourceCdn(source, url);
             })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
         });
+        it('the case ".test{background-image:url(\'i/a.png\')"', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.cssImagesUrlReplace('.test{background-image:url(\'i/a.png\')', function (url) {
+                return urlReplace.addSourceCdn(source, url);
+            })).to.equal('.test{background-image:url(http://misc.360buyimg.com/jdf-test/widget/test/i/a.png)');
+        });
+
+        it('the case "i/iconfont.eot?2"', function(){
+            jdf.config.projectPath = 'jdf-test';
+            jdf.config.cdn = 'http://misc.360buyimg.com';
+
+            var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
+
+            expect(urlReplace.addSourceCdn(source, 'i/iconfont.eot?2')).to.equal('http://misc.360buyimg.com/jdf-test/widget/test/i/iconfont.eot?2');
+        })
 
         it('the case "i/iconfont.eot?#iefix"', function(){
             jdf.config.projectPath = 'jdf-test';
@@ -95,7 +114,7 @@ describe('replace url', function(){
             var source = $.pathJoin(process.cwd(), 'build', jdf.config.projectPath, 'widget/test/test.css');
 
             expect(urlReplace.addSourceCdn(source, 'i/iconfont.eot?#iefix')).to.equal('http://misc.360buyimg.com/jdf-test/widget/test/i/iconfont.eot?#iefix');
-        })
+        });
     });
 
     describe('addSourceCdn()', function(){
