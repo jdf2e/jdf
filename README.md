@@ -18,9 +18,9 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.4.8  / 2018/01/17 18:40:00
-* [fix] 修复github提示的安全风险
-* [add] 支持{}对象为seajs的factory，比如`define('id', [], {})`
+### 3.4.9  / 2018/01/29 13:10:00
+* [fix] 修复css中对url路径拼接的一些bug
+* [add] 支持css url路径的单引号引用写法
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
