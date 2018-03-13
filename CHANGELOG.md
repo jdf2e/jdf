@@ -1,5 +1,8 @@
 ## changelog
 
+### 3.4.10  / 2018/03/13 16:42:00
+* [fix] 修复对link进行cdn路径替换时，非css link标签，如`<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">`也会进行cdn替换的bug。
+
 ### 3.4.9  / 2018/01/29 13:10:00
 * [fix] 修复css中对url路径拼接的一些bug
 * [add] 支持css url路径的单引号引用写法
