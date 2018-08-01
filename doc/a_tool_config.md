@@ -2,7 +2,7 @@
 
 每一个项目的根目录都有一个独立的config.json配置文件，其详细配置如下：
 
-* `"projectPath": null` - [常用]工程目录前缀
+* `"projectPath": null` - 【常用】工程目录前缀
 
 * `"cssDir": "css"` - css文件夹名称
 
@@ -18,7 +18,7 @@
 
 * `"outputCustom": ""` - 自定义输出文件夹，以逗号分隔的字符串
 
-* `"cdn": "//misc.360buyimg.com"` - [常用]静态cdn域名
+* `"cdn": "//misc.360buyimg.com"` - 【常用】静态cdn域名
 
 * `"serverDir": "misc.360buyimg.com"` - 上传至远端服务器文件夹的名称
 
@@ -36,7 +36,7 @@
 
 * `"widgetNesting": true` - widget嵌套功能开关，默认开启
 
-* `"localServerPort": 80` - [常用]本地服务器端口
+* `"localServerPort": 80` - 【常用】本地服务器端口
 
 * `"build"`
 	* `"jsPlace": "insertBody"` - 调试时js文件位置 insertHead|insertBody
@@ -66,17 +66,17 @@
 
 	* `"jsPlace": "insertBody"` - 编译后js文件位置 insertHead|insertBody
 
-	* `"cssCombo": true` - [常用]css进行combo
+	* `"cssCombo": true` - 【常用】css进行combo
 
-	* `"jsCombo": true` - [常用]js进行combo todo
+	* `"jsCombo": true` - 【常用】js进行combo todo
 
 	* `"hasBanner": true` - 是否给js文件，css文件添加banner时间戳
 
-	* `"compressJs":true` - [常用]是否开启压缩js文件
+	* `"compressJs":true` - 【常用】是否开启压缩js文件
 
-	* `"compressCss":true` - [常用]是否开启压缩css文件
+	* `"compressCss":true` - 【常用】是否开启压缩css文件
 
-	* `"compressImage":true` - [常用]是否开启压缩图片
+	* `"compressImage":true` - 【常用】是否开启压缩图片
 
 	* `"cssSprite":true` - 是否开启css sprite功能
 
@@ -86,15 +86,15 @@
 
 	* `"cssSpriteDirection": vertical` - vertical：垂直合并，horizontal：水平合并
 
-	* `"cssAutoPrefixer": true` - [常用]是否自动删除过时的浏览器css前缀，如`-webkit-box-orient: vertical;`这种
+	* `"cssAutoPrefixer": true` - 【常用】是否自动删除过时的浏览器css前缀，如`-webkit-box-orient: vertical;`这种
 
 	* `"base64": false` - 是否对图片进行base64编码
 
 	* `"webp":false` - 是否生成对应的webp图片
 
-	* `"excludeFiles": ""` - [常用]想要直接忽略的文件/文件夹，以逗号分隔的字符串："test,build"
+	* `"excludeFiles": ""` - 【常用】想要直接忽略的文件/文件夹，以逗号分隔的字符串："test,build"
 
-* `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/，您也可以在项目根目录下新建一个`.babelrc`文件独立配置
+* `"babel"` - 默认只启用基本转义(3.4.10及之前preset-es2015，之后为preset-env)，您也可以在项目根目录下新建一个`.babelrc`文件独立配置
 	* `"presets": []`
 	* `"plugins": []`
 
