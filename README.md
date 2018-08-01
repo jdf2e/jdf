@@ -14,6 +14,10 @@ $ npm install jdfx -g
 ```
 * 执行`jdf -V`，测试是否安装成功（注意是大写的`V`）
 
+* [快速开始](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)
+
+* [配置config.json](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_config.md)
+
 ## 更新日志
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
