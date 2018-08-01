@@ -22,8 +22,8 @@ $ npm install jdfx -g
 
 [完整日志](https://github.com/jdf2e/jdf/blob/master/CHANGELOG.md)
 
-### 3.4.10  / 2018/03/13 16:42:00
-* [fix] 修复对link进行cdn路径替换时，非css link标签，如`<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">`也会进行cdn替换的bug。
+### 3.4.11  / 2018/08/01 14:43:00
+* [opti] babel编译默认支持由preset-es2015升级到preset-env。
 
 ## 说明文档
 * [示例安装](https://github.com/jdf2e/jdf/blob/master/doc/a_tool_develop.md)

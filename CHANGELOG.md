@@ -1,5 +1,8 @@
 ## changelog
 
+### 3.4.11  / 2018/08/01 14:43:00
+* [opti] babel编译默认支持由preset-es2015升级到preset-env。
+
 ### 3.4.10  / 2018/03/13 16:42:00
 * [fix] 修复对link进行cdn路径替换时，非css link标签，如`<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">`也会进行cdn替换的bug。
 
@@ -122,7 +125,7 @@
 * [fix] 扩展velocity #parse功能，现在可以正确parse后缀为vm和tpl的velocity文件
 
 ### 3.0.6 / 2017/01/03 16:44:00
-* 当cdn配置为static.360buyimg.com时，require的jdf组件cdn还应该是misc.360buyimg.com 
+* 当cdn配置为static.360buyimg.com时，require的jdf组件cdn还应该是misc.360buyimg.com
 
 ### 3.0.3 / 2016/12/28 12:51:00
 * [add]urlReplace.js集成jsAst
@@ -420,7 +423,7 @@
 * [fix]getProjectPath默认取当前文件夹名称
 * [bug]输出的图片文件夹为cssi，应该为css/i
 
-### 1.3.24 
+### 1.3.24
 * [bug]server返回上一层文件夹异常,直接回到根目录
 * [fix]本地服务器支持映射combo文件v1.0
 * [fix]编译时widget文件位置增加配置项:底部或者尾部
