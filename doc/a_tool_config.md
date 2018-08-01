@@ -2,7 +2,7 @@
 
 每一个项目的根目录都有一个独立的config.json配置文件，其详细配置如下：
 
-* `"projectPath": null` - 工程目录前缀
+* `"projectPath": null` - [常用]工程目录前缀
 
 * `"cssDir": "css"` - css文件夹名称
 
@@ -18,7 +18,7 @@
 
 * `"outputCustom": ""` - 自定义输出文件夹，以逗号分隔的字符串
 
-* `"cdn": "//misc.360buyimg.com"` - 静态cdn域名
+* `"cdn": "//misc.360buyimg.com"` - [常用]静态cdn域名
 
 * `"serverDir": "misc.360buyimg.com"` - 上传至远端服务器文件夹的名称
 
@@ -29,24 +29,24 @@
 * `"widgetOutputName": "widget"` - 全局widgetOutputName名称
 
 * `"widgetOutputMode": 1` - 编译全局wigetOutputName模式，共三种：1: all widgets|2: white list|3: black list
-    
+
 * `"widgetWhiteList": []` - 指定白名单，在widgetOutputMode=2时，输出这个列表内容到widget.js/widget.css中
 
 * `"widgetBlackList": []` - 指定黑名单，在widgetOutputMode=3时，排除这个列表的widget
 
 * `"widgetNesting": true` - widget嵌套功能开关，默认开启
 
-* `"localServerPort": 80` - 本地服务器端口
+* `"localServerPort": 80` - [常用]本地服务器端口
 
 * `"build"`
 	* `"jsPlace": "insertBody"` - 调试时js文件位置 insertHead|insertBody
-	
+
 	* `"livereload":true` - 是否开启liveload
-	
+
 	* `"sass":true` - 是否开启sass编译
-	
+
 	* `"less":true` - 是否开启less编译
-	
+
 	* `"csslint": false` - 是否开启csslint
 
 * `"upload"`
@@ -63,39 +63,39 @@
 	* `"linkReplace": true` - 给link.href添加cdn前缀，v3.3.0版本新增，之前由`jsUrlReplace`参数控制link.href添加cdn
 
 	* `"jsUrlReplace": false` - js文件的id和dependences是否添加cdn前缀
-	
+
 	* `"jsPlace": "insertBody"` - 编译后js文件位置 insertHead|insertBody
-	
-	* `"cssCombo": true` - css进行combo
-	
-	* `"jsCombo": true` - js进行combo todo
+
+	* `"cssCombo": true` - [常用]css进行combo
+
+	* `"jsCombo": true` - [常用]js进行combo todo
 
 	* `"hasBanner": true` - 是否给js文件，css文件添加banner时间戳
-	
-	* `"compressJs":true` - 是否开启压缩js文件
-	
-	* `"compressCss":true` - 是否开启压缩css文件
-	
-	* `"compressImage":true` - 是否开启压缩图片
+
+	* `"compressJs":true` - [常用]是否开启压缩js文件
+
+	* `"compressCss":true` - [常用]是否开启压缩css文件
+
+	* `"compressImage":true` - [常用]是否开启压缩图片
 
 	* `"cssSprite":true` - 是否开启css sprite功能
-	
+
 	* `"cssSpriteMode": 1` - 0: 将所有css文件中的背景图合并成一张sprite图片，1: 将每一个widget中的背景图分别合并成一张图片
-	
+
 	* `"cssSpriteMargin": 10` - css sprite图片之间的间距
 
 	* `"cssSpriteDirection": vertical` - vertical：垂直合并，horizontal：水平合并
 
-	* `"cssAutoPrefixer": true` - 是否自动删除过时的浏览器css前缀
+	* `"cssAutoPrefixer": true` - [常用]是否自动删除过时的浏览器css前缀，如`-webkit-box-orient: vertical;`这种
 
 	* `"base64": false` - 是否对图片进行base64编码
 
 	* `"webp":false` - 是否生成对应的webp图片
 
-	* `"excludeFiles": ""` - 想要直接忽略的文件/文件夹，以逗号分隔的字符串："test,build"
+	* `"excludeFiles": ""` - [常用]想要直接忽略的文件/文件夹，以逗号分隔的字符串："test,build"
 
-* `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/
+* `"babel"` - 默认只启用基本转义 http://babeljs.io/docs/plugins/preset-es2015/，您也可以在项目根目录下新建一个`.babelrc`文件独立配置
 	* `"presets": []`
 	* `"plugins": []`
 
-		
+
