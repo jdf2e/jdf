@@ -15,6 +15,7 @@
     "tool",
     "cli",
     "front-end",
+    "webpack",
     "fe"
   ],
   "license": "MIT",

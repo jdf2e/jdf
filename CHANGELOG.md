@@ -1,7 +1,7 @@
 ## changelog
 
 ### 3.4.12 / 2018/08/15 19:58:00
-* [add] 支持autoprefixer的browserslist配置，灵活输出浏览器前缀
+* [add] 支持autoprefixer的browserslist配置，灵活输出浏览器前缀。
 
 ### 3.4.11  / 2018/08/01 14:43:00
 * [opti] babel编译默认支持由preset-es2015升级到preset-env。
