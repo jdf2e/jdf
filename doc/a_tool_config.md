@@ -86,7 +86,9 @@
 
 	* `"cssSpriteDirection": vertical` - vertical：垂直合并，horizontal：水平合并
 
-	* `"cssAutoPrefixer": true` - 【常用】是否自动删除过时的浏览器css前缀，如`-webkit-box-orient: vertical;`这种
+	* `"cssAutoPrefixer": true` - 【常用】是否自动删除过时的浏览器css前缀，如`-webkit-box-orient: vertical;`
+
+	* `"browserslist": ["last 2 version", "> 0.2%", "ie > 7"]` - 【常用】配置autoprefixer的浏览器兼容处理
 
 	* `"base64": false` - 是否对图片进行base64编码
 
