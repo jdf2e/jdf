@@ -1,7 +1,7 @@
 {
   "name": "jdfx",
   "description": "京东前端自动化构建工具",
-  "version": "3.4.12",
+  "version": "3.4.13",
   "author": {
     "name": "jdfx",
     "email": "chenxiaochun@jd.com"
@@ -68,7 +68,7 @@
     "less": "^2.7.1",
     "lodash": "^4.17.2",
     "minimatch": "^3.0.3",
-    "node-sass": "latest",
+    "node-sass": "^4.14.1",
     "node-watch": "^0.5.3",
     "postcss": "^5.2.5",
     "shelljs": "^0.7.5",

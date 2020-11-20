@@ -1,5 +1,8 @@
 ## changelog
 
+### 3.4.13 / 2020/11/20 18:34:00
+* [fix] 修改node-sass版本，修复node-sass更新到5.0.0后无法在node 8安装的问题。
+
 ### 3.4.12 / 2018/08/15 19:58:00
 * [add] 支持autoprefixer的browserslist配置，灵活输出浏览器前缀。
 
